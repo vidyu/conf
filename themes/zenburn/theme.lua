@@ -8,7 +8,7 @@
 
 -- {{{ Main
 theme = {}
-theme.wallpaper = "~/Pictures/wallpapper-melon-green-leaves.jpg"
+theme.wallpaper = "~/Pictures/my wallpapers/1440x900_HD_Wallpaper_178_Zixpk.jpg"
 -- }}}
 
 -- {{{ Styles
