@@ -1,4 +1,4 @@
 conf
 ====
 
-Config files
+Xresources Config
