@@ -8,7 +8,7 @@
 
 -- {{{ Main
 theme = {}
-theme.wallpaper = "~/Pictures/wallpapper-melon-green-leaves.jpg"
+theme.wallpaper = "~/.config/awesome/themes/zenburn/arch-background.jpg"
 -- }}}
 
 -- {{{ Styles
