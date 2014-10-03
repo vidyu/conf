@@ -18,6 +18,10 @@ xterm*font: 7x13
 *color2: #859900
 *color10: #586e75
 
+!! yellow dark/light
+*color3: #b58900
+*color11: #657b83
+
 ! URxvt*.transparent: true
 ! URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
 ! URxvt*.shading: 160
