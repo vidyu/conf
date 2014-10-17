@@ -13,6 +13,7 @@ local menubar = require("menubar")
 
 -- Lain
 local lain = require("lain")
+local markup = lain.util.markup
 -- visious
 local vicious = require("vicious")
 
@@ -150,8 +151,20 @@ fswidget = lain.widgets.fs({
    end
 })
 
+
 -- mpd
-mpdwidget = lain.widgets.mpd()
+mpdwidget = lain.widgets.mpd({
+     settings = function()
+        if mpd_now.state == "play" then
+           state = "▶"
+        -- elseif mpd_now.state == "pause" then
+        --    state = ""
+        else
+           state = "◼"
+        end
+        widget:set_markup(markup(beautiful.fg_normal , state))
+     end
+})
 -- -- Initialize widget
 -- mpdwidget = wibox.widget.textbox()
 -- -- Register widget
@@ -259,10 +272,6 @@ for s = 1, screen.count() do
 
     local right_layout = wibox.layout.fixed.horizontal()
 
-    right_layout:add(mpdwidget)
-
-
-
 
     right_layout:add(arrl_ld)
     right_layout:add(arrl_dl)
@@ -273,7 +282,8 @@ for s = 1, screen.count() do
     if s == 1 then right_layout:add(fswidget) end
     if s == 1 then right_layout:add(arrl) end
 
-
+    right_layout:add(mpdwidget)
+    right_layout:add(arrl)
     -- right_layout:add(arrl_dl)
     -- right_layout:add(arrl_ld)
     if s == 1 then right_layout:add(wibox.widget.systray()) end
