@@ -64,14 +64,14 @@ modkey = "Mod4"
 local layouts =
 {
     awful.layout.suit.floating,
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
+    lain.layout.uselesstile,
+    lain.layout.uselesstile.left,
+    lain.layout.uselesstile.bottom,
+    lain.layout.uselesstile.top,
+    lain.layout.uselessfair,
+    lain.layout.uselessfair.horizontal,
+    lain.layout.uselesspiral,
+    lain.layout.uselesspiral.dwindle,
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier
@@ -90,11 +90,11 @@ end
 -- Define a tag table which hold all screen tags.
 tags = {}
 
-tags[1] = awful.tag({ "ℰmacs", "⌨", "♪♬", 4, 5, 6, 7, 8, 9 }, s, layouts[2])
+tags[1] = awful.tag({ "ℰmacs", "♠♡♢♣", "♬♯♪" }, s, layouts[2])
 
 for s = 2, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[2])
+    tags[s] = awful.tag({ 1, 2, 3, 4 }, s, layouts[2])
 end
 -- }}}
 
@@ -325,7 +325,13 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Down",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
+    -- lain tags manipulation
+    awful.key({ modkey, "Shift" }, "n", function () lain.util.add_tag(mypromptbox) end),
     awful.key({ modkey, "Shift" }, "r", function () lain.util.rename_tag(mypromptbox) end),
+    awful.key({ modkey, "Shift" }, "d", function () lain.util.remove_tag() end),
+    -- On the fly useless gaps change
+    awful.key({ modkey, "Shift" }, "Up", function () lain.util.useless_gaps_resize(1) end),
+    awful.key({ modkey, "Shift" }, "Down", function () lain.util.useless_gaps_resize(-1) end),
 
     awful.key({ modkey,           }, "j",
         function ()

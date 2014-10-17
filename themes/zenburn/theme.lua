@@ -90,6 +90,8 @@ theme.awesome_icon           = themes_dir .. "/arch-icon.png"
 theme.menu_submenu_icon      = "/usr/share/awesome/themes/default/submenu.png"
 -- }}}
 
+theme.useless_gap_width = 0
+
 -- {{{ Layout
 theme.layout_tile       = themes_dir .. "/layouts/tile.png"
 theme.layout_tileleft   = themes_dir .. "/layouts/tileleft.png"
@@ -99,6 +101,14 @@ theme.layout_fairv      = themes_dir .. "/layouts/fairv.png"
 theme.layout_fairh      = themes_dir .. "/layouts/fairh.png"
 theme.layout_spiral     = themes_dir .. "/layouts/spiral.png"
 theme.layout_dwindle    = themes_dir .. "/layouts/dwindle.png"
+theme.layout_uselesstile       = themes_dir .. "/layouts/tile.png"
+theme.layout_uselesstileleft   = themes_dir .. "/layouts/tileleft.png"
+theme.layout_uselesstilebottom = themes_dir .. "/layouts/tilebottom.png"
+theme.layout_uselesstiletop    = themes_dir .. "/layouts/tiletop.png"
+theme.layout_uselessfair      = themes_dir .. "/layouts/fairv.png"
+theme.layout_uselessfairh      = themes_dir .. "/layouts/fairh.png"
+theme.layout_uselesspiral     = themes_dir .. "/layouts/spiral.png"
+theme.layout_uselessdwindle    = themes_dir .. "/layouts/dwindle.png"
 theme.layout_max        = themes_dir .. "/layouts/max.png"
 theme.layout_fullscreen = themes_dir .. "/layouts/fullscreen.png"
 theme.layout_magnifier  = themes_dir .. "/layouts/magnifier.png"
