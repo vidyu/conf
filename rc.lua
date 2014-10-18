@@ -325,6 +325,11 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Down",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
+    -- show hide wibox
+    awful.key({ modkey }, "b", function ()
+          mywibox[mouse.screen].visible = not mywibox[mouse.screen].visible
+    end),
+
     -- lain tags manipulation
     awful.key({ modkey, "Shift" }, "n", function () lain.util.add_tag(mypromptbox) end),
     awful.key({ modkey, "Shift" }, "r", function () lain.util.rename_tag(mypromptbox) end),
