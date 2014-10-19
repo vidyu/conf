@@ -1,4 +1,6 @@
 conf
 ====
 
-Config files
+Compton config file
+
+Start compton with `compton -b`
