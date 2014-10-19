@@ -121,8 +121,8 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- launch the Cairo Composite Manager
 -- awful.util.spawn_with_shell("cairo-compmgr &")
--- awful.util.spawn_with_shell("compton -CGb &")
-awful.util.spawn_with_shell("compton -cbCGfF -o 0.38 -O 200 -I 200 -t 0 -l 0 -r 3 -D2 -m 0.88 -i 0.9")
+awful.util.spawn_with_shell("compton -b")
+-- awful.util.spawn_with_shell("compton -cbCGfF -o 0.38 -O 200 -I 200 -t 0 -l 0 -r 3 -D2 -m 0.88 -i 0.9")
 
 -- Keyboard map indicator and changer
 kbdcfg = {}
@@ -333,6 +333,8 @@ globalkeys = awful.util.table.join(
     -- lain tags manipulation
     awful.key({ modkey, "Shift" }, "n", function () lain.util.add_tag(mypromptbox) end),
     awful.key({ modkey, "Shift" }, "r", function () lain.util.rename_tag(mypromptbox) end),
+    awful.key({ modkey, "Shift" }, "Left", function () lain.util.move_tag(1) end),  -- move to next tag
+    awful.key({ modkey, "Shift" }, "Right", function () lain.util.move_tag(-1) end), -- move to previous tag
     awful.key({ modkey, "Shift" }, "d", function () lain.util.remove_tag() end),
     -- On the fly useless gaps change
     awful.key({ modkey, "Shift" }, "Up", function () lain.util.useless_gaps_resize(1) end),
