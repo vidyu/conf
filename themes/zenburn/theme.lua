@@ -33,7 +33,7 @@ theme.bg_systray = theme.bg_normal
 -- }}}
 
 -- {{{ Borders
-theme.border_width  = 2
+theme.border_width  = 0
 theme.border_normal = "#3F3F3F"
 theme.border_focus  = "#238D06"
 theme.border_marked = "#CC9393"
@@ -90,7 +90,7 @@ theme.awesome_icon           = themes_dir .. "/arch-icon.png"
 theme.menu_submenu_icon      = "/usr/share/awesome/themes/default/submenu.png"
 -- }}}
 
-theme.useless_gap_width = 0
+theme.useless_gap_width = 20
 
 -- {{{ Layout
 theme.layout_tile       = themes_dir .. "/layouts/tile.png"
