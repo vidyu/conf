@@ -192,6 +192,9 @@ arrl_ld:set_image(beautiful.arrl_ld)
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
 
+-- Calendar attach calendar
+lain.widgets.calendar:attach(mytextclock)
+
 -- Create a wibox for each screen and add it
 mywibox = {}
 mypromptbox = {}
