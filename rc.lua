@@ -90,7 +90,7 @@ end
 -- Define a tag table which hold all screen tags.
 tags = {}
 
-tags[1] = awful.tag({ "ℰmacs", "♠♡♢♣", "♬♯♪" }, s, layouts[2])
+tags[1] = awful.tag({ "ℰmacs", "♠♡♢♣", "♬♯♪", "@", "rest" }, s, layouts[2])
 
 for s = 2, screen.count() do
     -- Each screen has its own tag table.
@@ -123,6 +123,9 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- awful.util.spawn_with_shell("cairo-compmgr &")
 awful.util.spawn_with_shell("compton -b")
 -- awful.util.spawn_with_shell("compton -cbCGfF -o 0.38 -O 200 -I 200 -t 0 -l 0 -r 3 -D2 -m 0.88 -i 0.9")
+
+--start audio systeray
+awful.util.spawn_with_shell("pasystray")
 
 -- Keyboard map indicator and changer
 kbdcfg = {}
@@ -409,6 +412,8 @@ globalkeys = awful.util.table.join(
     -- Multimedia keys
     awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn( "/usr/bin/pulseaudio-ctl up" ) end),
     awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn( "/usr/bin/pulseaudio-ctl down" ) end),
+    awful.key({ }, "#80", function () awful.util.spawn( "/usr/bin/pulseaudio-ctl up" ) end),
+    awful.key({ }, "#88", function () awful.util.spawn( "/usr/bin/pulseaudio-ctl down" ) end),
     awful.key({ }, "XF86AudioMute", function () awful.util.spawn( "/usr/bin/pulseaudio-ctl mute" ) end),
     awful.key({ }, "XF86AudioPlay", function () awful.util.spawn( "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.mpd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause" ) end),
     awful.key({ }, "#83", function () awful.util.spawn( "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.mpd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous" ) end),
