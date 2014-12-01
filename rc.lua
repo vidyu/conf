@@ -49,7 +49,7 @@ end
 beautiful.init("~/.config/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
+terminal = "termite"
 editor = os.getenv("EDITOR") or "emacs"
 editor_cmd = terminal .. " -e " .. editor .. " -nw "
 
@@ -409,6 +409,7 @@ globalkeys = awful.util.table.join(
     -- Power Keys
     awful.key({ modkey, "Control" }, "s",     function () awful.util.spawn( "systemctl suspend" )  end),
     awful.key({ modkey, "Control" }, "p",     function () awful.util.spawn( "systemctl poweroff" )  end),
+    awful.key({ modkey, "Control" }, "l",     function () awful.util.spawn( "/opt/lock/lock" )  end),
     -- Multimedia keys
     awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn( "/usr/bin/pulseaudio-ctl up" ) end),
     awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn( "/usr/bin/pulseaudio-ctl down" ) end),
