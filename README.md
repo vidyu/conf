@@ -1,4 +1,4 @@
 conf
 ====
 
-Config files
+Config files for Xorg
