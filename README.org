@@ -1,0 +1,8 @@
+#+STARTUP: indent
+#+DRAWERS: HIDDEN STATE PROPERTIES
+#+AUTHOR: Vidyu Krastev
+#+TITLE: oh-my-zsh Configurations
+
+* Install oh-my-zsh
+
+* Link
