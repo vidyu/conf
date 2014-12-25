@@ -11,6 +11,13 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
+-- Lain
+local lain = require("lain")
+local markup = lain.util.markup
+-- visious
+local vicious = require("vicious")
+
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -42,7 +49,7 @@ end
 beautiful.init("~/.config/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
+terminal = "termite"
 editor = os.getenv("EDITOR") or "emacs"
 editor_cmd = terminal .. " -e " .. editor .. " -nw "
 
@@ -57,14 +64,14 @@ modkey = "Mod4"
 local layouts =
 {
     awful.layout.suit.floating,
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
+    lain.layout.uselesstile,
+    lain.layout.uselesstile.left,
+    lain.layout.uselesstile.bottom,
+    lain.layout.uselesstile.top,
+    lain.layout.uselessfair,
+    lain.layout.uselessfair.horizontal,
+    lain.layout.uselesspiral,
+    lain.layout.uselesspiral.dwindle,
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier
@@ -82,9 +89,12 @@ end
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {}
-for s = 1, screen.count() do
+
+tags[1] = awful.tag({ "ℰmacs", "♠♡♢♣", "♬♯♪", "@", "rest" }, s, layouts[2])
+
+for s = 2, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[2])
+    tags[s] = awful.tag({ 1, 2, 3, 4 }, s, layouts[2])
 end
 -- }}}
 
@@ -111,8 +121,11 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- launch the Cairo Composite Manager
 -- awful.util.spawn_with_shell("cairo-compmgr &")
--- awful.util.spawn_with_shell("compton -CGb &")
-awful.util.spawn_with_shell("compton -cbCGfF -o 0.38 -O 200 -I 200 -t 0 -l 0 -r 3 -D2 -m 0.88 -i 0.9")
+awful.util.spawn_with_shell("compton -b")
+-- awful.util.spawn_with_shell("compton -cbCGfF -o 0.38 -O 200 -I 200 -t 0 -l 0 -r 3 -D2 -m 0.88 -i 0.9")
+
+--start audio systeray
+awful.util.spawn_with_shell("pasystray")
 
 -- Keyboard map indicator and changer
 kbdcfg = {}
@@ -134,9 +147,56 @@ kbdcfg.widget:buttons(
 )
 
 
--- {{{ Wibox
+-- FS
+fswidget = lain.widgets.fs({
+   settings  = function()
+      widget:set_text(" " .. fs_now.used .. "% ")
+   end
+})
+
+
+-- mpd
+mpdwidget = lain.widgets.mpd({
+     settings = function()
+        if mpd_now.state == "play" then
+           state = "▶"
+        -- elseif mpd_now.state == "pause" then
+        --    state = ""
+        else
+           state = "◼"
+        end
+        widget:set_markup(markup(beautiful.fg_normal , state))
+     end
+})
+-- -- Initialize widget
+-- mpdwidget = wibox.widget.textbox()
+-- -- Register widget
+-- vicious.register(mpdwidget, vicious.widgets.mpd,
+--     function (mpdwidget, args)
+--         if args["{state}"] == "Stop" then
+--             return " - "
+--         else
+--             return args["{Artist}"]..' - '.. args["{Title}"]
+--         end
+--     end, 10)
+
+
+-- {{{ wibox
+
+-- Separators
+spr = wibox.widget.textbox(' ')
+arrl = wibox.widget.imagebox()
+arrl:set_image(beautiful.arrl)
+arrl_dl = wibox.widget.imagebox()
+arrl_dl:set_image(beautiful.arrl_dl)
+arrl_ld = wibox.widget.imagebox()
+arrl_ld:set_image(beautiful.arrl_ld)
+
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
+
+-- Calendar attach calendar
+lain.widgets.calendar:attach(mytextclock)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -215,15 +275,33 @@ for s = 1, screen.count() do
     left_layout:add(mypromptbox[s])
 
     -- Widgets that are aligned to the right
-    local right_layout = wibox.layout.fixed.horizontal()
-    if s == 1 then right_layout:add(wibox.widget.systray()) end
 
-	right_layout:add(kbdcfg.widget)
+    local right_layout = wibox.layout.fixed.horizontal()
+
+
+    right_layout:add(arrl_ld)
+    right_layout:add(arrl_dl)
+
+    right_layout:add(kbdcfg.widget)
+    right_layout:add(arrl)
+
+    if s == 1 then right_layout:add(fswidget) end
+    if s == 1 then right_layout:add(arrl) end
+
+    right_layout:add(mpdwidget)
+    right_layout:add(arrl)
+    -- right_layout:add(arrl_dl)
+    -- right_layout:add(arrl_ld)
+    if s == 1 then right_layout:add(wibox.widget.systray()) end
+    if s == 1 then right_layout:add(arrl) end
 
     right_layout:add(mytextclock)
+    -- right_layout:add(arrl)
+
+
     right_layout:add(mylayoutbox[s])
 
-	-- Add widget to your layout
+    -- Add widget to your layout
 
 
 
@@ -252,6 +330,21 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Down",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
+
+    -- show hide wibox
+    awful.key({ modkey }, "b", function ()
+          mywibox[mouse.screen].visible = not mywibox[mouse.screen].visible
+    end),
+
+    -- lain tags manipulation
+    awful.key({ modkey, "Shift" }, "n", function () lain.util.add_tag(mypromptbox) end),
+    awful.key({ modkey, "Shift" }, "r", function () lain.util.rename_tag(mypromptbox) end),
+    awful.key({ modkey, "Shift" }, "Left", function () lain.util.move_tag(1) end),  -- move to next tag
+    awful.key({ modkey, "Shift" }, "Right", function () lain.util.move_tag(-1) end), -- move to previous tag
+    awful.key({ modkey, "Shift" }, "d", function () lain.util.remove_tag() end),
+    -- On the fly useless gaps change
+    awful.key({ modkey, "Shift" }, "Up", function () lain.util.useless_gaps_resize(1) end),
+    awful.key({ modkey, "Shift" }, "Down", function () lain.util.useless_gaps_resize(-1) end),
 
     awful.key({ modkey,           }, "j",
         function ()
@@ -308,22 +401,25 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
-    awful.key({ modkey			 }, "p",      function() menubar.show()					end),
-	-- Alt + Right Shift switches the current keyboard layout
+    awful.key({ modkey           }, "p",      function() menubar.show()					end),
+    -- Alt + Right Shift switches the current keyboard layout
     awful.key({ modkey           },"Shift_R", function () kbdcfg.switch()               end),
-	-- Emacs Client
-	awful.key({ modkey }, "e", function () awful.util.spawn( "emacsclient -c -a ''" ) end),
-	-- Power Keys
-	awful.key({ modkey, "Control" }, "s",     function () awful.util.spawn( "systemctl suspend" )  end),
-	awful.key({ modkey, "Control" }, "p",     function () awful.util.spawn( "systemctl poweroff" )  end),
-	-- Multimedia keys
-	awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn( "/usr/bin/pulseaudio-ctl up" ) end),
-	awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn( "/usr/bin/pulseaudio-ctl down" ) end),
-	awful.key({ }, "XF86AudioMute", function () awful.util.spawn( "/usr/bin/pulseaudio-ctl mute" ) end),
-	awful.key({ }, "XF86AudioPlay", function () awful.util.spawn( "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.mpd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause" ) end),
-	awful.key({ }, "#83", function () awful.util.spawn( "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.mpd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous" ) end),
-	awful.key({ }, "#84", function () awful.util.spawn( "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.mpd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause" ) end),
-	awful.key({ }, "#85", function () awful.util.spawn( "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.mpd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next" ) end)
+    -- Emacs Client
+    awful.key({ modkey }, "e", function () awful.util.spawn( "emacsclient -c -a ''" ) end),
+    -- Power Keys
+    awful.key({ modkey, "Control" }, "s",     function () awful.util.spawn( "systemctl suspend" )  end),
+    awful.key({ modkey, "Control" }, "p",     function () awful.util.spawn( "systemctl poweroff" )  end),
+    awful.key({ modkey, "Control" }, "l",     function () awful.util.spawn( "/opt/lock/lock" )  end),
+    -- Multimedia keys
+    awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn( "/usr/bin/pulseaudio-ctl up" ) end),
+    awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn( "/usr/bin/pulseaudio-ctl down" ) end),
+    awful.key({ }, "#80", function () awful.util.spawn( "/usr/bin/pulseaudio-ctl up" ) end),
+    awful.key({ }, "#88", function () awful.util.spawn( "/usr/bin/pulseaudio-ctl down" ) end),
+    awful.key({ }, "XF86AudioMute", function () awful.util.spawn( "/usr/bin/pulseaudio-ctl mute" ) end),
+    awful.key({ }, "XF86AudioPlay", function () awful.util.spawn( "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.mpd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause" ) end),
+    awful.key({ }, "#83", function () awful.util.spawn( "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.mpd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous" ) end),
+    awful.key({ }, "#84", function () awful.util.spawn( "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.mpd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause" ) end),
+    awful.key({ }, "#85", function () awful.util.spawn( "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.mpd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next" ) end)
 
 )
 
@@ -345,8 +441,8 @@ clientkeys = awful.util.table.join(
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
         end),
-	-- Toggle titlebar
-	awful.key({ modkey, "Shift" }, "t", awful.titlebar.toggle)
+    -- Toggle titlebar
+    awful.key({ modkey, "Shift" }, "t", awful.titlebar.toggle)
 )
 
 -- Bind all key numbers to tags.
@@ -413,15 +509,18 @@ awful.rules.rules = {
                      focus = awful.client.focus.filter,
                      raise = true,
                      keys = clientkeys,
-                     buttons = clientbuttons } },
+                     buttons = clientbuttons,
+                     size_hints_honor = false } },
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
     { rule = { class = "pinentry" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
-	{ rule = { instance = "plugin-container" },
-	  properties = { floating = true } },
+    { rule = { instance = "plugin-container" },
+      properties = { floating = true } },
+    -- Start windows as slave
+    { rule = { }, properties = { }, callback = awful.client.setslave }
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
