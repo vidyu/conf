@@ -1,7 +1,7 @@
 ! Xresources file
 
 URxvt.depth: 32
-URxvt.background:       rgba:ffff/ffff/ffff/aaaa
+! URxvt.background:       rgba:ffff/ffff/ffff/aaaa
 
 ! urxvt*background:  [10]#FCFCFC
 ! scrollbar style - rxvt (default), plain (most compact), next, or xterm
@@ -15,12 +15,12 @@ xterm*faceName: Inconsolata LGC:size=10:antialias=true
 xterm*font: 7x13
 
 !! green dark/light
-*color2: #859900
-*color10: #586e75
+! *color2: #859900
+! *color10: #586e75
 
 !! yellow dark/light
-*color3: #b58900
-*color11: #657b83
+! *color3: #b58900
+! *color11: #657b83
 
 ! URxvt*.transparent: true
 ! URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
