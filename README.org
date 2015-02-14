@@ -5,4 +5,11 @@
 
 * Install oh-my-zsh
 
+** Update git submodules
+~git submodule init~
+
+~git submodule update~
+
 * Link
+- zshrc -> ~/.zshrc
+- zshenv -> ~/.zshenv
