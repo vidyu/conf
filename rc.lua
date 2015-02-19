@@ -18,6 +18,43 @@ local markup = lain.util.markup
 local vicious = require("vicious")
 
 
+require("lfs")
+-- {{{ Run programm once
+local function processwalker()
+   local function yieldprocess()
+      for dir in lfs.dir("/proc") do
+        -- All directories in /proc containing a number, represent a process
+        if tonumber(dir) ~= nil then
+          local f, err = io.open("/proc/"..dir.."/cmdline")
+          if f then
+            local cmdline = f:read("*all")
+            f:close()
+            if cmdline ~= "" then
+              coroutine.yield(cmdline)
+            end
+          end
+        end
+      end
+    end
+    return coroutine.wrap(yieldprocess)
+end
+
+local function run_once(process, cmd)
+   assert(type(process) == "string")
+   local regex_killer = {
+      ["+"]  = "%+", ["-"] = "%-",
+      ["*"]  = "%*", ["?"]  = "%?" }
+
+   for p in processwalker() do
+      if p:find(process:gsub("[-+?*]", regex_killer)) then
+         return
+      end
+   end
+   return awful.util.spawn(cmd or process)
+end
+-- }}}
+
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -121,11 +158,11 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- launch the Cairo Composite Manager
 -- awful.util.spawn_with_shell("cairo-compmgr &")
-awful.util.spawn_with_shell("compton -b")
+run_once("compton -b")
 -- awful.util.spawn_with_shell("compton -cbCGfF -o 0.38 -O 200 -I 200 -t 0 -l 0 -r 3 -D2 -m 0.88 -i 0.9")
 
 --start audio systeray
-awful.util.spawn_with_shell("pasystray")
+run_once("pasystray")
 
 -- Keyboard map indicator and changer
 kbdcfg = {}

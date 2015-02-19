@@ -1,0 +1,6 @@
+#+STARTUP: indent
+#+DRAWERS: HIDDEN STATE PROPERTIES
+#+AUTHOR: Vidyu Krastev
+#+TITLE: Configurations for AwesomeWM
+
+* lua-filesystem package is needed for the autostart function
