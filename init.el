@@ -90,9 +90,7 @@
 (add-hook 'js2-mode-hook 'ac-js2-mode)
 (add-hook 'js2-mode-hook 'hs-minor-mode)
 (add-hook 'js2-mode-hook 'whitespace-mode)
-
-
-(add-hook 'before-save-hook 'whitespace-cleanup)
+(add-hook 'js2-mode-hook 'whitespace-cleanup-mode)
 
 
 (require 'web-mode)

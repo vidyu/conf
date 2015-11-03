@@ -17,6 +17,7 @@
 (depends-on "projectile")
 (depends-on "restclient")
 (depends-on "web-mode")
+(depends-on "whitespace-cleanup-mode")
 (depends-on "with-editor")
 (depends-on "workgroups2")
 (depends-on "yasnippet")
