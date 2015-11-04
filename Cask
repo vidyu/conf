@@ -2,6 +2,7 @@
 (source melpa)
 
 (depends-on "ac-js2")
+(depends-on "async")
 (depends-on "atom-one-dark-theme")
 (depends-on "auto-complete")
 (depends-on "flycheck")
@@ -14,6 +15,7 @@
 (depends-on "mingus")
 (depends-on "multiple-cursors")
 (depends-on "org-jira")
+(depends-on "package-build")
 (depends-on "pallet")
 (depends-on "projectile")
 (depends-on "restclient")
