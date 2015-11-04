@@ -12,6 +12,7 @@
 (depends-on "magit")
 (depends-on "magit-popup")
 (depends-on "mingus")
+(depends-on "multiple-cursors")
 (depends-on "org-jira")
 (depends-on "pallet")
 (depends-on "projectile")
