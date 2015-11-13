@@ -17,6 +17,7 @@
 (depends-on "org-jira")
 (depends-on "package-build")
 (depends-on "pallet")
+(depends-on "powerline")
 (depends-on "projectile")
 (depends-on "restclient")
 (depends-on "web-mode")

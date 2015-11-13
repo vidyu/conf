@@ -22,7 +22,7 @@
  '(custom-enabled-themes (quote (atom-one-dark)))
  '(custom-safe-themes
    (quote
-    ("cd2a93d7b63aff07b3565c1c95e461cb880f0b00d8dd6cdd10fa8ece01ffcfdf" default)))
+    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "8122f00211dbaf973fbe5831f808af92387c8fc1a44f0c6bcc9b22c16997c9dd" "cd2a93d7b63aff07b3565c1c95e461cb880f0b00d8dd6cdd10fa8ece01ffcfdf" default)))
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
  '(global-auto-complete-mode t)
  '(global-flycheck-mode t)
@@ -59,11 +59,20 @@
     ((sequence "OPEN" "IN-PROGRESS" "REOPENED" "|" "COMMITTED" "RESOLVED")
      (sequence "TODO" "WORKING" "DONE"))))
  '(projectile-global-mode t)
+ '(rich-minority-mode t)
+ '(rm-blacklist "^.*&")
  '(safe-local-variable-values (quote ((eval ispell-change-dictionary "en"))))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(web-mode-attr-indent-offset 4)
+ '(web-mode-auto-close-style 2)
+ '(web-mode-enable-auto-closing t)
+ '(web-mode-enable-auto-indentation t)
+ '(web-mode-enable-auto-pairing t)
+ '(web-mode-enable-auto-quoting t)
+ '(web-mode-enable-html-entities-fontification t)
+ '(wg-emacs-exit-save-behavior nil)
  '(wg-prefix-key (kbd "C-z"))
  '(whitespace-line-column 120)
  '(workgroups-mode t)
@@ -113,5 +122,6 @@
   (define-key ido-completion-map (kbd "M-p") 'ido-prev-match)
   )
 
-;;; init.el ends here
+
 (put 'dired-find-alternate-file 'disabled nil)
+;;; init.el ends here
