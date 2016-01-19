@@ -1,6 +1,15 @@
 ;; package --- Initfile
 ;;; Commentary:
 ;;; Code:
+
+
+;; base load path
+(defconst dotfiles-dir
+  (file-name-directory
+   (or (buffer-file-name) load-file-name))
+  "Base path for customised Emacs configuration.")
+
+
 (require 'cask)
 (cask-initialize)
 (require 'pallet)
@@ -15,7 +24,8 @@
  ;; If there is more than one, they won't work right.
  '(ac-auto-start nil)
  '(ac-trigger-key "TAB")
- '(auto-save-file-name-transforms (\` (("(?:[^/]/)(.*)" (\, (concat autosave-dir "")) t))))
+ '(auto-save-file-name-transforms (\` (("(?:[^/]/)(.*)" (\, (concat "~/.emacs.d/autosaves/" "")) t))))
+ '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
  '(blink-cursor-blinks 100)
  '(blink-cursor-mode t)
  '(coffee-tab-width 2)
@@ -97,45 +107,20 @@
 
 
 ;; laod js2-mode for js files
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-
-(add-hook 'js2-mode-hook 'ac-js2-mode)
-(add-hook 'js2-mode-hook 'hs-minor-mode)
-(add-hook 'js2-mode-hook 'whitespace-mode)
-(add-hook 'js2-mode-hook 'whitespace-cleanup-mode)
+(load (concat dotfiles-dir "init/setup-js2"))
 
 
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(defvar web-mode-engines-alist '(("angular" . "\\.*melon-webapp/.*.html\\'")))
+(load (concat dotfiles-dir "init/setup-web-mode"))
 
 ;; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
 (make-directory "~/.emacs.d/backups/" t)
 
-;; To modify the keybindings, use the ido-setup-hook.  For example:
-(require 'ido)
-(add-hook 'ido-setup-hook 'ido-my-keys)
-
-(defun ido-my-keys ()
-  "Add my keybindings for ido."
-  (define-key ido-completion-map (kbd "M-f") 'ido-next-match)
-  (define-key ido-completion-map (kbd "M-b") 'ido-prev-match)
-  (define-key ido-completion-map (kbd "M-n") 'ido-next-match)
-  (define-key ido-completion-map (kbd "M-p") 'ido-prev-match)
-  )
-
+(load (concat dotfiles-dir "init/setup-ido"))
 
 (put 'dired-find-alternate-file 'disabled nil)
 
-(require 'virtualenvwrapper)
-(venv-initialize-interactive-shells) ;; if you want interactive shell support
-(venv-initialize-eshell) ;; if you want eshell support
-(setq venv-location "~/.virtualenvs/")
-
-(add-hook 'python-mode-hook 'jedi:setup)
-;; (setq jedi:setup-keys t)   ; optional
-;; (setq jedi:complete-on-dot t)  ;optional
+(load (concat dotfiles-dir "init/setup-python"))
 
 ;;; init.el ends here
 (put 'upcase-region 'disabled nil)
