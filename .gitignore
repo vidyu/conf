@@ -8,3 +8,5 @@ auto-save-list
 url
 /.mc-lists.el
 /tramp
+/.python-environments
+/eshell

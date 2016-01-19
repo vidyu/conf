@@ -18,11 +18,12 @@
  '(auto-save-file-name-transforms (\` (("(?:[^/]/)(.*)" (\, (concat autosave-dir "")) t))))
  '(blink-cursor-blinks 100)
  '(blink-cursor-mode t)
+ '(coffee-tab-width 2)
  '(cursor-type (quote bar))
  '(custom-enabled-themes (quote (atom-one-dark)))
  '(custom-safe-themes
    (quote
-    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "8122f00211dbaf973fbe5831f808af92387c8fc1a44f0c6bcc9b22c16997c9dd" "cd2a93d7b63aff07b3565c1c95e461cb880f0b00d8dd6cdd10fa8ece01ffcfdf" default)))
+    ("705f3f6154b4e8fac069849507fd8b660ece013b64a0a31846624ca18d6cf5e1" "4904daa168519536b08ca4655d798ca0fb50d3545e6244cefcf7d0c7b338af7e" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "8122f00211dbaf973fbe5831f808af92387c8fc1a44f0c6bcc9b22c16997c9dd" "cd2a93d7b63aff07b3565c1c95e461cb880f0b00d8dd6cdd10fa8ece01ffcfdf" default)))
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
  '(global-auto-complete-mode t)
  '(global-flycheck-mode t)
@@ -32,6 +33,7 @@
  '(ido-vertical-mode t)
  '(indent-tabs-mode nil)
  '(js2-basic-offset 2)
+ '(js2-mode-show-parse-errors nil)
  '(menu-bar-mode nil)
  '(org-agenda-clockreport-parameter-plist
    (quote
@@ -54,9 +56,10 @@
  '(org-modules
    (quote
     (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m org-jira)))
+ '(org-time-clocksum-use-effort-durations t)
  '(org-todo-keywords
    (quote
-    ((sequence "OPEN" "IN-PROGRESS" "REOPENED" "|" "COMMITTED" "RESOLVED")
+    ((sequence "OPEN" "IN-PROGRESS" "REOPENED" "|" "COMMITTED" "DEPLOYED" "VERIFIED" "RESOLVED" "CLOSED")
      (sequence "TODO" "WORKING" "DONE"))))
  '(projectile-global-mode t)
  '(rich-minority-mode t)
@@ -124,4 +127,15 @@
 
 
 (put 'dired-find-alternate-file 'disabled nil)
+
+(require 'virtualenvwrapper)
+(venv-initialize-interactive-shells) ;; if you want interactive shell support
+(venv-initialize-eshell) ;; if you want eshell support
+(setq venv-location "~/.virtualenvs/")
+
+(add-hook 'python-mode-hook 'jedi:setup)
+;; (setq jedi:setup-keys t)   ; optional
+;; (setq jedi:complete-on-dot t)  ;optional
+
 ;;; init.el ends here
+(put 'upcase-region 'disabled nil)
