@@ -1,4 +1,2 @@
-conf
+Emacs configuration
 ====
-
-Config files
