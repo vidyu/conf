@@ -10,3 +10,4 @@ url
 /tramp
 /.python-environments
 /eshell
+node_modules
