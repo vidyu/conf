@@ -62,7 +62,15 @@
      (sequence "TODO" "WORKING" "DONE"))))
  '(projectile-global-mode t)
  '(rich-minority-mode t)
- '(rm-blacklist "^.*&")
+ '(rm-blacklist
+   (quote
+    (" hl-p" " ARev" " WSC" " ws" " wg" " yas" " $" " AC")))
+ '(rm-text-properties
+   (quote
+    (("\\` Ovwrt\\'"
+      (quote face)
+      (quote
+       ((t :inherit warning)))))))
  '(safe-local-variable-values (quote ((eval ispell-change-dictionary "en"))))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
