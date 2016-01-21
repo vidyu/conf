@@ -29,8 +29,10 @@
 ;; laod js2-mode for js files
 (load (concat dotfiles-dir "init/setup-js2"))
 
+(load (concat dotfiles-dir "init/setup-puml"))
 
 (load (concat dotfiles-dir "init/setup-web-mode"))
+
 
 ;; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)

@@ -32,6 +32,7 @@
 (depends-on "popup")
 (depends-on "powerline")
 (depends-on "projectile")
+(depends-on "puml-mode")
 (depends-on "python-mode")
 (depends-on "pyvenv")
 (depends-on "restclient")
