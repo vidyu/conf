@@ -86,7 +86,8 @@ end
 beautiful.init("~/.config/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "termite"
+-- terminal = "termite"
+terminal = "xterm"
 editor = os.getenv("EDITOR") or "emacs"
 editor_cmd = terminal .. " -e " .. editor .. " -nw "
 
