@@ -2,7 +2,7 @@
 
 
 XTerm*metaSendsEscape: true
-xterm*faceName: Inconsolata LGC:size=10:antialias=true
+xterm*faceName: Inconsolata LGC:size=8:antialias=true
 xterm*font: 7x13
 
 xterm*utf8: 1
