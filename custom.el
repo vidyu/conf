@@ -15,7 +15,14 @@
  '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
  '(blink-cursor-blinks 100)
  '(blink-cursor-mode t)
+ '(browse-url-browser-function (quote browse-url-chromium))
  '(coffee-tab-width 2)
+ '(company-backends
+   (quote
+    (company-bbdb company-nxml company-css company-eclim company-semantic company-clang company-xcode company-cmake company-capf
+                  (company-dabbrev-code company-gtags company-etags company-keywords)
+                  company-ac-php-backend company-oddmuse company-files company-dabbrev)))
+ '(company-gtags-modes (quote (prog-mode jde-mode php-mode)))
  '(cursor-type (quote bar))
  '(custom-enabled-themes (quote (atom-one-dark)))
  '(custom-safe-themes
@@ -24,7 +31,7 @@
  '(ediff-diff-options "-w")
  '(ediff-split-window-function (quote split-window-horizontally))
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
- '(global-auto-complete-mode t)
+ '(global-company-mode t)
  '(global-flycheck-mode t)
  '(global-hl-line-mode t)
  '(grunt-base-command "./node_modules/.bin/grunt")
@@ -33,6 +40,7 @@
  '(indent-tabs-mode nil)
  '(js2-basic-offset 2)
  '(js2-mode-show-parse-errors nil)
+ '(magit-diff-arguments (quote ("--stat" "--no-ext-diff")))
  '(menu-bar-mode nil)
  '(org-agenda-clockreport-parameter-plist
    (quote
@@ -61,6 +69,7 @@
     ((sequence "OPEN" "IN-PROGRESS" "REOPENED" "|" "COMMITTED" "DEPLOYED" "VERIFIED" "RESOLVED" "CLOSED")
      (sequence "TODO" "WORKING" "DONE"))))
  '(projectile-global-mode t)
+ '(projectile-mode-line " Projectile")
  '(rich-minority-mode t)
  '(rm-blacklist
    (quote
@@ -74,6 +83,7 @@
  '(safe-local-variable-values (quote ((eval ispell-change-dictionary "en"))))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
+ '(sql-mysql-options (quote ("--protocol=tcp")))
  '(tool-bar-mode nil)
  '(web-mode-attr-indent-offset 4)
  '(web-mode-auto-close-style 2)

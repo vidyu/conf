@@ -4,6 +4,7 @@
 
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.php?\\'" . php-mode))
 (defvar web-mode-engines-alist '(("angular" . "\\.*melon-webapp/.*.html\\'")))
 
 (provide 'setup-web-mode)
