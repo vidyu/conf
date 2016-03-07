@@ -103,6 +103,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:height 100 :family "Inconsolata LGC"))))
+ '(ediff-current-diff-C ((t (:background "saddle brown"))))
  '(ediff-fine-diff-B ((t (:background "dark green"))))
  '(hl-line ((t (:weight bold))))
  '(show-paren-match ((t (:underline t))))

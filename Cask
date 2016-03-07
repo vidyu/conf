@@ -3,6 +3,7 @@
 
 (depends-on "ac-js2")
 (depends-on "ac-php")
+(depends-on "ampc")
 (depends-on "async")
 (depends-on "atom-one-dark-theme")
 (depends-on "auto-complete")
@@ -51,5 +52,6 @@
 (depends-on "whitespace-cleanup-mode")
 (depends-on "with-editor")
 (depends-on "workgroups2")
+(depends-on "xcscope")
 (depends-on "yaml-mode")
 (depends-on "yasnippet")

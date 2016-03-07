@@ -3,6 +3,7 @@
 ;;; Code:
 
 
+(add-to-list 'auto-mode-alist '("\\.php?\\'" . php-mode))
 (add-hook 'php-mode-hook 'my-php-setup)
 
 (defun my-php-setup ()
