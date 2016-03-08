@@ -5,7 +5,6 @@
 ;; laod js2-mode for js files
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
-(add-hook 'js2-mode-hook 'ac-js2-mode)
 (add-hook 'js2-mode-hook 'hs-minor-mode)
 (add-hook 'js2-mode-hook 'whitespace-mode)
 (add-hook 'js2-mode-hook 'whitespace-cleanup-mode)

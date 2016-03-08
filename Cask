@@ -1,7 +1,6 @@
 (source gnu)
 (source melpa)
 
-(depends-on "ac-js2")
 (depends-on "ac-php")
 (depends-on "ampc")
 (depends-on "async")
@@ -24,7 +23,7 @@
 (depends-on "ido-vertical-mode")
 (depends-on "jedi")
 (depends-on "jedi-core")
-(depends-on "js2-mode")
+(depends-on "js2-mode" :git "https://github.com/mooz/js2-mode" :ref "20150909")
 (depends-on "know-your-http-well")
 (depends-on "libmpdee")
 (depends-on "magit")
