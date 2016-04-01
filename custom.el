@@ -38,6 +38,7 @@
  '(ido-mode (quote both) nil (ido))
  '(ido-vertical-mode t)
  '(indent-tabs-mode nil)
+ '(js-indent-level 2)
  '(js2-basic-offset 2)
  '(js2-mode-show-parse-errors nil)
  '(magit-diff-arguments (quote ("--stat" "--no-ext-diff")))
