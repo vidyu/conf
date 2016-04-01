@@ -46,5 +46,7 @@
 
 (load (concat dotfiles-dir "init/setup-python"))
 
+(load (concat dotfiles-dir "init/setup-window"))
+
 ;;; init.el ends here
 (put 'upcase-region 'disabled nil)
