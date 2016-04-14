@@ -17,11 +17,6 @@
  '(blink-cursor-mode t)
  '(browse-url-browser-function (quote browse-url-chromium))
  '(coffee-tab-width 2)
- '(company-backends
-   (quote
-    (company-bbdb company-nxml company-css company-eclim company-semantic company-clang company-xcode company-cmake company-capf
-                  (company-dabbrev-code company-gtags company-etags company-keywords)
-                  company-ac-php-backend company-oddmuse company-files company-dabbrev)))
  '(company-gtags-modes (quote (prog-mode jde-mode php-mode)))
  '(cursor-type (quote bar))
  '(custom-enabled-themes (quote (atom-one-dark)))
