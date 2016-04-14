@@ -29,6 +29,7 @@
  '(global-company-mode t)
  '(global-flycheck-mode t)
  '(global-hl-line-mode t)
+ '(global-subword-mode t)
  '(grunt-base-command "./node_modules/.bin/grunt")
  '(ido-mode (quote both) nil (ido))
  '(ido-vertical-mode t)
