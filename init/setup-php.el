@@ -11,6 +11,7 @@
   (ggtags-mode 1)
   (hs-minor-mode 1)
   (require 'ac-php-company)
+  (add-to-list 'company-backends 'company-ac-php-backend)
   (add-to-list 'company-backends 'company-gtags)
   (define-key php-mode-map  (kbd "C-;") 'company-other-backend))
           
