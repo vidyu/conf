@@ -1,0 +1,6 @@
+#+STARTUP: indent
+#+DRAWERS: HIDDEN STATE PROPERTIES
+#+AUTHOR: Vidyu Krastev
+#+TITLE: Configurations for QTile
+
+* [[http://www.qtile.org][Official Website]]
