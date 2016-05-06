@@ -60,6 +60,13 @@ class Theme(object):
         'margin_y': 0,
         'width': 50,
         }
+    currentScreen = {
+        'active_text': '⬤',
+        'inactive_text': '⬤',
+        'inactive_color': bar['background'],
+        'background': bar['background'],
+        'foreground': '00ff00',
+    }
     groupbox = widget.copy()
     groupbox.update({
         'padding': 2,
@@ -99,8 +106,8 @@ keys = [
     Key([mod], "l", lazy.layout.right()),
 
     # Move windows up or down in current stack
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_up()),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_down()),
     Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
 
@@ -139,9 +146,9 @@ keys = [
     Key([mod, "control"], "space", lazy.widget['keyboardlayout'].next_keyboard())
 ]
 
-groups0 = [Group(i) for i in "uiop"]
+groups = [Group(i) for i in "asdfuiop"]
 
-for i in groups0:
+for i in groups[4:]:
     # mod1 + letter of group = switch to group
     keys.append(
         Key([mod], i.name, lazy.group[i.name].toscreen(0))
@@ -152,9 +159,7 @@ for i in groups0:
         Key([mod, "shift"], i.name, lazy.window.togroup(i.name))
     )
 
-groups1 = [Group(i) for i in "asdf"]
-
-for i in groups1:
+for i in groups[:4]:
     # mod1 + letter of group = switch to group
     keys.append(
         Key([mod], i.name, lazy.group[i.name].toscreen(1))
@@ -184,11 +189,13 @@ screens = [
                 widget.CurrentLayout(**Theme.widget),
                 widget.Prompt(**Theme.widget),
                 widget.WindowName(**Theme.widget),
+                widget.Notify(**Theme.widget),
                 widget.KeyboardLayout(update_interval=1, configured_keyboards=['us', 'bg phonetic'], **Theme.widget),
                 widget.Systray(**Theme.systray),
                 widget.Clock(format='%Y-%m-%d %a %I:%M %p', **Theme.widget),
+                widget.CurrentScreen(**Theme.currentScreen),
             ],
-            30,
+            **Theme.bar,
         ),
     ),
     Screen(
@@ -196,8 +203,9 @@ screens = [
             [
                 widget.WindowName(**Theme.widget),
                 widget.CurrentLayout(**Theme.widget),
+                widget.CurrentScreen(**Theme.currentScreen),
             ],
-            30,
+            **Theme.bar,
         ),
     )
 ]
