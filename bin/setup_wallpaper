@@ -1,3 +1,5 @@
 #!/bin/sh
 
-feh --bg-scale ~/Pictures/wallpapper-melon-green-leaves-bender.jpg 
+compton -b
+feh --bg-scale ~/Pictures/wallpaper-2309838.jpg
+

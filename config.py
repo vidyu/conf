@@ -35,7 +35,8 @@ from libqtile import layout, bar, widget, hook
 
 
 # reconfigure screens
-# call("./bin/setup_screens")
+setup_screens = os.path.expanduser('~/.screenlayout/2screens.sh')
+call([setup_screens])
 
 
 ##-> Theme + widget options
@@ -49,7 +50,7 @@ class Theme(object):
         'font': 'Andika',
         'fontsize': 11,
         'background': bar['background'],
-        'foreground': '00ff00',
+        'foreground': '2e7299',
         }
     graph = {
         'background': '000000',
@@ -99,6 +100,12 @@ class Theme(object):
 mod = "mod4"
 
 keys = [
+
+    # Volume
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("/usr/bin/pulseaudio-ctl up")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("/usr/bin/pulseaudio-ctl down")),
+    Key([], "XF86AudioMute", lazy.spawn("/usr/bin/pulseaudio-ctl mute")),
+    
     # Switch between windows in current stack pane
     Key([mod], "j", lazy.layout.up()),
     Key([mod], "k", lazy.layout.down()),
@@ -116,7 +123,11 @@ keys = [
     Key([mod, "control"], "h", lazy.layout.grow_left()),
     Key([mod, "control"], "l", lazy.layout.grow_right()),
 
-
+    #VerticalTile
+    Key([mod], "g", lazy.layout.grow()),
+    Key([mod], "b", lazy.layout.shrink()),
+    Key([mod], "m", lazy.layout.maximize()),
+    Key([mod], "n", lazy.layout.normalize()),
 
     
     
@@ -143,12 +154,13 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
 
-    Key([mod, "control"], "space", lazy.widget['keyboardlayout'].next_keyboard())
+    # Key([mod, "control"], "space", lazy.widget['keyboardlayout'].next_keyboard())
+    Key([mod, "control"], "space", lazy.window.toggle_floating())
 ]
 
 groups = [Group(i) for i in "asdfuiop"]
 
-for i in groups[4:]:
+for i in groups[:4]:
     # mod1 + letter of group = switch to group
     keys.append(
         Key([mod], i.name, lazy.group[i.name].toscreen(0))
@@ -159,7 +171,7 @@ for i in groups[4:]:
         Key([mod, "shift"], i.name, lazy.window.togroup(i.name))
     )
 
-for i in groups[:4]:
+for i in groups[4:]:
     # mod1 + letter of group = switch to group
     keys.append(
         Key([mod], i.name, lazy.group[i.name].toscreen(1))
@@ -171,7 +183,8 @@ for i in groups[:4]:
     )
 
 layouts = [
-    layout.Columns(num_columns=2, autosplit=True),
+    layout.Columns(num_columns=2, border_focus='#FFFFFF', autosplit=True, margin=2),
+    layout.VerticalTile(margin=2, border_focus='#FFFFFF', border_normal='#220000'),
     layout.Max()
 ]
 
@@ -185,14 +198,8 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.GroupBox(urgent_alert_method='text', **Theme.groupbox),
-                widget.CurrentLayout(**Theme.widget),
-                widget.Prompt(**Theme.widget),
                 widget.WindowName(**Theme.widget),
-                widget.Notify(**Theme.widget),
-                widget.KeyboardLayout(update_interval=1, configured_keyboards=['us', 'bg phonetic'], **Theme.widget),
-                widget.Systray(**Theme.systray),
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p', **Theme.widget),
+                widget.CurrentLayout(**Theme.widget),
                 widget.CurrentScreen(**Theme.currentScreen),
             ],
             **Theme.bar,
@@ -201,13 +208,18 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.WindowName(**Theme.widget),
+                widget.GroupBox(urgent_alert_method='text', **Theme.groupbox),
                 widget.CurrentLayout(**Theme.widget),
+                widget.Prompt(**Theme.widget),
+                widget.WindowName(**Theme.widget),
+                # widget.Notify(**Theme.widget),
+                widget.Systray(**Theme.systray),
+                widget.Clock(format='%Y-%m-%d %a %H:%M', **Theme.widget),
                 widget.CurrentScreen(**Theme.currentScreen),
             ],
             **Theme.bar,
         ),
-    )
+    ),
 ]
 
 ##-> Floating windows
