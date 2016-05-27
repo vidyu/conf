@@ -35,6 +35,8 @@
 
 (load (concat dotfiles-dir "init/setup-php"))
 
+(load (concat dotfiles-dir "init/setup-whitespace"))
+
 
 ;; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)

@@ -8,12 +8,14 @@
 
 (defun my-php-setup ()
   "The config for php."
-  (ggtags-mode 1)
-  (hs-minor-mode 1)
-  (require 'ac-php-company)
   (make-variable-buffer-local 'company-backends)
   (add-to-list 'company-backends 'company-ac-php-backend)
   (add-to-list 'company-backends 'company-gtags)
+  (ggtags-mode 1)
+  (hs-minor-mode 1)
+  (require 'ac-php-company)
+  ;; (whitespace-mode)
+  (whitespace-cleanup-mode)
   (define-key php-mode-map  (kbd "C-;") 'company-other-backend))
           
 (provide 'setup-php)

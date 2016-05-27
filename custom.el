@@ -67,6 +67,7 @@
      (sequence "TODO" "WORKING" "DONE"))))
  '(projectile-global-mode t)
  '(projectile-mode-line " Projectile")
+ '(puml-plantuml-jar-path "/home/vidyu/.emacs.d/lib/plantuml.jar")
  '(rich-minority-mode t)
  '(rm-blacklist
    (quote
