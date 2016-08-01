@@ -51,7 +51,10 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:./node_modules/.bin:/opt/android-sdk/platform-tools:/opt/android-sdk/tools:/usr/local/heroku/bin"
+export ANDROID_HOME=$HOME/.android-sdk
+
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:./node_modules/.bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:/usr/local/heroku/bin"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -81,3 +84,5 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/u
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Workspace
 source /usr/bin/virtualenvwrapper.sh
+fpath=(~/.zsh/completion/ $fpath)
+autoload -Uz compinit && compinit -i
