@@ -8,6 +8,8 @@
 (add-hook 'js2-mode-hook 'hs-minor-mode)
 (add-hook 'js2-mode-hook 'whitespace-mode)
 (add-hook 'js2-mode-hook 'whitespace-cleanup-mode)
+(add-hook 'js2-mode-hook (lambda() (tern-mode t)))
+;; (add-to-list 'company-backends 'company-tern)
 (add-hook 'js2-mode-hook
           #'(lambda ()
               (define-key js2-mode-map "\C-ci" 'js-doc-insert-function-doc)
