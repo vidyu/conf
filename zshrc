@@ -86,3 +86,4 @@ export PROJECT_HOME=$HOME/Workspace
 source /usr/bin/virtualenvwrapper.sh
 fpath=(~/.zsh/completion/ $fpath)
 autoload -Uz compinit && compinit -i
+source /usr/share/nvm/init-nvm.sh
