@@ -313,12 +313,14 @@ URxvt.tabbed.tabbar-bg: 0
 URxvt.tabbed.tab-fg: 0
 URxvt.tabbed.tab-bg: 1
 URxvt.tabbed.secondaryScroll: true
-URxvt.font: xft:Inconsolata LGC:pixelsize=12
+URxvt.font: xft:Inconsolata LGC:pixelsize=12,xft: FontAwesome:pixelsize:12
 URxvt.tabbed.font: xft:Bitstream Vera Sans Mono:pixelsize=12
 URxvt*inheritPixmap: true
 URxvt.transparent: true 
-URxvt.shading: 60
+URxvt.shading: 44
 URxvt.depth: 32
+URxvt.imLocale: de_DE.utf8
+URxvt*termName: rxvt-unicode
 ! scrollbar style - rxvt (default), plain (most compact), next, or xterm
 URxvt.scrollstyle: plain
 
@@ -335,4 +337,7 @@ rofi.font: SF UI Display 16
 rofi.width: 100
 rofi.height: 100
 rofi.eh: 2
-rofi.padding: 444
+rofi.fullscreen: true
+rofi.kb-row-up:                      Up,Control+p,Alt+p,Shift+Tab,Shift+ISO_Left_Tab
+rofi.kb-row-down:                    Down,Control+p,Alt+n,Tab
+! rofi.padding: 444
