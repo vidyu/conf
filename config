@@ -248,6 +248,7 @@ exec compton -b
 # exec feh --bg-scale ~/Pictures/wallpaper-2309838.jpg
 exec nitrogen --restore
 exec --no-startup-id pasystray
+exec --no-startup-id nm-applet
 # exec pasystray &
 exec dunst &
 
