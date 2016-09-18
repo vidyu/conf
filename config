@@ -60,8 +60,8 @@ bindsym XF86MonBrightnessDown exec "xbacklight -dec 20; notify-send 'brightness 
 # bindsym $mod+F5 exec terminal -e 'mocp'
 # bindsym $mod+t exec --no-startup-id pkill compton
 # bindsym $mod+Ctrl+t exec --no-startup-id compton -b
-bindsym $mod+d exec rofi -show run
-bindsym $mod+x exec rofi -show drun
+bindsym $mod+d exec rofi -show drun
+bindsym $mod+x exec rofi -show run
 bindsym $alt+Tab exec rofi -show window
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 # bindsym Print exec --no-startup-id i3-scrot
