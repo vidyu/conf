@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+#name : var_dump
+# --
+var_dump($0);
