@@ -44,7 +44,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(puml-mode)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -270,6 +270,10 @@ you should place your code here."
   (spacemacs/toggle-mode-line-minor-modes-off)
   (spacemacs/toggle-mode-line-version-control-off)
   (spacemacs/toggle-mode-line-org-clock-on)
+  ;; Puml conf
+  (add-to-list 'auto-mode-alist '("\\.puml\\'" . puml-mode))
+  (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . puml-mode))
+  (customize-set-variable 'puml-plantuml-jar-path (concat dotspacemacs-directory "plantuml.jar"))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
