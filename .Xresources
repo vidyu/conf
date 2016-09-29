@@ -12,7 +12,7 @@ xterm*selectToClipboard: true
 ! n0tch2k colors
 
 *foreground:#a0a0a0
-*background:#222222
+*background: rgba:3400/3400/3400/ffff
 *color0:  #383838
 *color1:  #A95551
 *color2:  #66666
@@ -300,24 +300,21 @@ xterm*selectToClipboard: true
 URxvt*geometry: 100x30
 URxvt.saveLines: 1000
 URxvt.scrollBar: false
-URxvt.foreground: #a0a0a0
-URxvt.background: #222222
+! URxvt.foreground: #a0a0a0
+URxvt.background: rgba:0000/0000/0000/aa00
 URxvt.secondaryScroll: true
 
-URxvt.urlLauncher: firefox
+URxvt.urlLauncher: chromium
 URxvt.matcher.button: 1
-URxvt.tabbed.saveLines: 1000
-URxvt.tabbed.scrollBar: false
 URxvt.tabbed.tabbar-fg: 3
 URxvt.tabbed.tabbar-bg: 0
 URxvt.tabbed.tab-fg: 0
 URxvt.tabbed.tab-bg: 1
-URxvt.tabbed.secondaryScroll: true
 URxvt.font: xft:Inconsolata LGC:pixelsize=12,xft: FontAwesome:pixelsize:12
 URxvt.tabbed.font: xft:Bitstream Vera Sans Mono:pixelsize=12
-URxvt*inheritPixmap: true
-URxvt.transparent: true 
-URxvt.shading: 44
+! URxvt*inheritPixmap: true
+! URxvt.transparent: true 
+! URxvt.shading: 44
 URxvt.depth: 32
 URxvt.imLocale: de_DE.utf8
 URxvt*termName: rxvt-unicode
