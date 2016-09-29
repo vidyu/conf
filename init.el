@@ -99,11 +99,12 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(atom-one-dark
+                         spacemacs-dark
                          spacemacs-light
+                         leuven
                          solarized-light
                          solarized-dark
-                         leuven
                          monokai
                          zenburn)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
@@ -250,6 +251,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
     "Base path for customised Emacs configuration.")
   (setq-default
    flycheck-disabled-checkers (quote (javascript-jscs))
+   custom-theme-directory dotspacemacs-directory
    browse-url-browser-function (quote browse-url-chromium))
   )
 
@@ -270,6 +272,9 @@ you should place your code here."
   (spacemacs/toggle-mode-line-minor-modes-off)
   (spacemacs/toggle-mode-line-version-control-off)
   (spacemacs/toggle-mode-line-org-clock-on)
+  (when (member 'atom-one-dark custom-enabled-themes)
+    (load-theme 'atom-customizations))
+
   ;; Puml conf
   (add-to-list 'auto-mode-alist '("\\.puml\\'" . puml-mode))
   (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . puml-mode))
