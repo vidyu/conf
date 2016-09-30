@@ -12,7 +12,7 @@ xterm*selectToClipboard: true
 ! n0tch2k colors
 
 *foreground:#a0a0a0
-*background: rgba:3400/3400/3400/ffff
+*background: #222222
 *color0:  #383838
 *color1:  #A95551
 *color2:  #66666
