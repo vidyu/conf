@@ -25,6 +25,8 @@ values."
      ;; ----------------------------------------------------------------
      auto-completion
      ;; better-defaults
+     ibuffer
+     emoji
      emacs-lisp
      javascript
      html
@@ -252,7 +254,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq-default
    flycheck-disabled-checkers (quote (javascript-jscs))
    custom-theme-directory dotspacemacs-directory
-   browse-url-browser-function (quote browse-url-chromium))
+   browse-url-browser-function (quote browse-url-chromium)
+   js-indent-level 2
+   js2-basic-offset 2)
+  ;; Prevent Custom from dumping its local settings into this file.
+  (setq-default custom-file (concat dotspacemacs-directory "custom.el"))
+  (load-file custom-file)
   )
 
 (defun dotspacemacs/user-config ()
@@ -280,25 +287,3 @@ you should place your code here."
   (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . puml-mode))
   (customize-set-variable 'puml-plantuml-jar-path (concat dotspacemacs-directory "plantuml.jar"))
   )
-
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(blink-cursor-mode t)
- '(css-indent-offset 2)
- '(cursor-type (quote bar))
- '(js-indent-level 2)
- '(js2-basic-offset 2)
- '(org-agenda-files (quote ("~/Documents/melon/melon-tasks.org")))
- '(safe-local-variable-values (quote ((eval ispell-change-dictionary "en")))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
