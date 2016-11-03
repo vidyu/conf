@@ -297,7 +297,7 @@ xterm*selectToClipboard: true
 
 ! rxvt-unicode ---------------------------------------------------------------
 
-URxvt*geometry: 100x30
+URxvt*geometry: 186x44
 URxvt.saveLines: 1000
 URxvt.scrollBar: false
 ! URxvt.foreground: #a0a0a0
