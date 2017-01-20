@@ -22,7 +22,7 @@
     ignore_newline = no
     geometry = "300x5-30+50"
     shrink = no
-    transparency = 0
+    transparency = 32
     idle_threshold = 120
     monitor = 0
     follow = mouse
@@ -36,12 +36,12 @@
     separator_color = frame
     startup_notification = false
     # dmenu = /usr/bin/dmenu -p dunst:
-    browser = /usr/bin/google-chrome-beta
+    browser = /usr/bin/chromium
     icon_position = off
     icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
 
 [frame]
-    width = 5
+    width = 0
     color = "#cc241d"
 
 [shortcuts]
@@ -60,5 +60,5 @@
 
 [urgency_critical]
     background = "#282828"
-    foreground = "#ebdbb2"
+    foreground = "#cc241d"
     timeout = 3
