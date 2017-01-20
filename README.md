@@ -1,4 +1,6 @@
 conf
 ====
 
-Config files for dunst
+* Config files for dunst
+
+_dunstrc_ -> _~/.config/dunst/dusntrc_
