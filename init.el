@@ -18,6 +18,9 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     vimscript
+     php
+     python
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -31,7 +34,8 @@ values."
      javascript
      html
      git
-     ;; markdown
+     restclient
+     markdown
      org
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -46,7 +50,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(puml-mode)
+   dotspacemacs-additional-packages '(plantuml-mode)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -79,7 +83,7 @@ values."
    ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
    ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
    ;; unchanged. (default 'vim)
-   dotspacemacs-editing-style 'emacs
+   dotspacemacs-editing-style 'hybrid
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -101,7 +105,8 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(atom-one-dark
+   dotspacemacs-themes '(subatomic
+                         atom-one-dark
                          spacemacs-dark
                          spacemacs-light
                          leuven
@@ -173,7 +178,7 @@ values."
    dotspacemacs-helm-position 'bottom
    ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
    ;; several times cycle between the kill ring content. (default nil)
-   dotspacemacs-enable-paste-micro-state nil
+   dotspacemacs-enable-paste-micro-state t
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
    dotspacemacs-which-key-delay 0.4
@@ -252,7 +257,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
      (or (buffer-file-name) load-file-name))
     "Base path for customised Emacs configuration.")
   (setq-default
-   flycheck-disabled-checkers (quote (javascript-jscs))
+   flycheck-disabled-checkers (quote (javascript-jscs javascript-jshint))
    custom-theme-directory dotspacemacs-directory
    browse-url-browser-function (quote browse-url-chromium)
    js-indent-level 2
@@ -270,6 +275,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (global-vi-tilde-fringe-mode -1)
+  (setenv "PATH" (concat (getenv "PATH") ":" dotspacemacs-directory "node_modules/.bin/"))
   (add-to-list 'exec-path (concat dotspacemacs-directory "node_modules/.bin/"))
   (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
   (add-hook 'js2-mode-hook (lambda () (flyspell-mode-off)))
