@@ -261,6 +261,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
    custom-theme-directory dotspacemacs-directory
    browse-url-browser-function (quote browse-url-chromium)
    js-indent-level 2
+   js-expr-indent-offset -2
+   js-switch-indent-offset 2
    js2-basic-offset 2)
   ;; Prevent Custom from dumping its local settings into this file.
   (setq-default custom-file (concat dotspacemacs-directory "custom.el"))
