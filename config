@@ -63,6 +63,7 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+t exec --no-startup-id pkill compton
 # bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+d exec rofi -show drun
+bindsym $mod+p exec rofi-pass
 bindsym $mod+x exec rofi -show run
 bindsym $alt+Tab exec rofi -show window
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
@@ -225,10 +226,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 5 px or 5 ppt
+        bindsym j resize grow height 5 px or 5 ppt
+        bindsym k resize shrink height 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
