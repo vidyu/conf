@@ -338,3 +338,4 @@ rofi.fullscreen: true
 rofi.kb-row-up:                      Up,Control+p,Alt+p,Shift+Tab,Shift+ISO_Left_Tab
 rofi.kb-row-down:                    Down,Control+p,Alt+n,Tab
 ! rofi.padding: 444
+rofi.m: -1
