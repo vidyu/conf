@@ -31,6 +31,9 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     nginx
+     yaml
+     csv
      vimscript
      php
      python
@@ -42,7 +45,7 @@ values."
      auto-completion
      ;; better-defaults
      ibuffer
-     emoji
+     ;; emoji
      emacs-lisp
      javascript
      html
@@ -135,7 +138,11 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(subatomic
+   dotspacemacs-themes '(
+                         spacemacs-light
+                         omtose-darker
+                         brin
+                         subatomic
                          solarized-light
                          farmhouse-light
                          ;; atom-one-dark
@@ -329,7 +336,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
    custom-theme-directory dotspacemacs-directory
    browse-url-browser-function (quote browse-url-chromium)
    js-indent-level 2
-   js-expr-indent-offset -2
+   ;; js-expr-indent-offset -2
    js-switch-indent-offset 2
    js2-basic-offset 2)
   ;; Prevent Custom from dumping its local settings into this file.
@@ -344,6 +351,8 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (require 'org-projectile)
+  (org-projectile:prompt)
   (global-vi-tilde-fringe-mode -1)
   (setenv "PATH" (concat (getenv "PATH") ":" dotspacemacs-directory "node_modules/.bin/"))
   (add-to-list 'exec-path (concat dotspacemacs-directory "node_modules/.bin/"))
@@ -391,6 +400,15 @@ you should place your code here."
                :title "Pomodoro"
                :body "Pomodoro Killed!\nOne does not simply kill a pomodoro!"
                :timeout 0)))
+  (custom-set-faces
+   '(ediff-current-diff-C ((t (:background "saddle brown"))))
+   '(ediff-even-diff-A ((t (:background "grey32"))))
+   '(ediff-even-diff-B ((t (:background "grey32"))))
+   '(ediff-even-diff-C ((t (:background "grey32"))))
+   '(ediff-fine-diff-B ((t (:background "dark green"))))
+   '(ediff-odd-diff-A ((t (:background "grey24"))))
+   '(ediff-odd-diff-B ((t (:background "grey24"))))
+   '(ediff-odd-diff-C ((t (:background "grey24")))))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
