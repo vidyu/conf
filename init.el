@@ -351,8 +351,6 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  (require 'org-projectile)
-  (org-projectile:prompt)
   (global-vi-tilde-fringe-mode -1)
   (setenv "PATH" (concat (getenv "PATH") ":" dotspacemacs-directory "node_modules/.bin/"))
   (add-to-list 'exec-path (concat dotspacemacs-directory "node_modules/.bin/"))
