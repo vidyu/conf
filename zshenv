@@ -8,6 +8,7 @@ source /usr/bin/virtualenvwrapper.sh
 fpath=(~/.zsh/completion/ $fpath)
 autoload -Uz compinit && compinit -i
 source /usr/share/nvm/init-nvm.sh
+source <(gopass completion zsh)
 
 if [ -n "$DESKTOP_SESSION" ];then
         eval $(gnome-keyring-daemon --start)
