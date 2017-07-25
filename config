@@ -32,6 +32,15 @@ bindsym $mod+y border pixel 3
 # use neither window title nor border
 bindsym $mod+u border none
 
+# class                 border    backgr.   text    indicator   child_border
+client.focused          #4c789988 #28557788 #ffffff #2e9ef488   #28557788
+client.focused_inactive #33333388 #5f676a88 #ffffff #484e5088   #5f676a88
+client.unfocused        #33333388 #22222222 #000000 #292d2e88   #22222288
+client.urgent           #2f343a88 #90000088 #ffffff #90000088   #90000088
+client.placeholder      #00000088 #0c0c0c22 #ffffff #00000088   #0c0c0c88
+
+client.background       #ffffff
+
 # Hide borders
 hide_edge_borders none
 
@@ -261,27 +270,83 @@ exec nitrogen --restore
 exec --no-startup-id pasystray
 # exec pasystray &
 exec dunst &
+exec xxkb &
 exec xbanish &
 exec xscreensaver &
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+# bar toggle, hide or show
+bindsym $mod+m bar mode toggle
+
 bar {
         output HDMI1
         tray_output HDMI1
         strip_workspace_numbers yes
+        i3bar_command i3bar -t
         status_command i3blocks
         colors {
                # Whole color settings
-                background #222222
+                background #22222200
+                focused_workspace  #4c789988 #28557788 #ffffff
+                active_workspace   #22222200 #22222200 #ffffff
+                inactive_workspace #22222200 #22222200 #888888
+                urgent_workspace   #2f343a88 #90000088 #ffffff
+                binding_mode       #2f343a88 #90000088 #ffffff
         }
 }
 bar {
         output LVDS1
         tray_output HDMI1
         strip_workspace_numbers yes
+        i3bar_command i3bar -t
         colors {
                # Whole color settings
-                background #222222
+                background #22222200
+                focused_workspace  #4c789988 #28557788 #ffffff
+                active_workspace   #22222200 #22222200 #ffffff
+                inactive_workspace #22222200 #22222200 #888888
+                urgent_workspace   #2f343a88 #90000088 #ffffff
+                binding_mode       #2f343a88 #90000088 #ffffff
         }
+}
+
+smart_gaps on
+gaps inner 10
+
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
 }
