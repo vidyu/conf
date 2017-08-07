@@ -7,4 +7,5 @@ Dependencies
 
 * SF UI Disaplay font _(package included)_
 * xscreensaver
+* bumblebee-status
 * [Rofi](https://davedavenport.github.io/rofi/)

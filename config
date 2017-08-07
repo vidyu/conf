@@ -299,7 +299,9 @@ bar {
         tray_output VGA1
         strip_workspace_numbers yes
         i3bar_command i3bar -t
-        status_command i3blocks
+        # status_command i3blocks
+        # status_command py3status
+        status_command bumblebee-status -m nic cpu pasource pasink datetime -p interval=2.5 datetime.format="%a, %b %x %X" -t gruvbox-powerline
         colors {
                # Whole color settings
                 background #22222200
