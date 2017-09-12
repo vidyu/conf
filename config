@@ -285,7 +285,7 @@ exec nitrogen --restore
 exec --no-startup-id pasystray
 # exec pasystray &
 exec dunst &
-exec xxkb &
+exec sleep 2s && xxkb &
 exec xbanish &
 exec xscreensaver &
 
