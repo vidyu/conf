@@ -45,7 +45,8 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-enable-help-tooltip t)
      ;; better-defaults
      ibuffer
      ;; emoji
@@ -61,7 +62,7 @@ values."
      ;;        shell-default-position 'bottom)
      spell-checking
      syntax-checking
-     ;; version-control
+     version-control
      spacemacs-layouts
      themes-megapack
      )
@@ -69,9 +70,16 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(plantuml-mode geben)
+   dotspacemacs-additional-packages '(
+                                      plantuml-mode
+                                      geben all-the-icons
+                                      spaceline-all-the-icons
+                                      js-import
+                                      doom-themes
+                                      )
    ;; A list of packages that cannot be updated.
-   dotspacemacs-frozen-packages '(org-plus-contrib)
+   dotspacemacs-frozen-packages '(;; org-plus-contrib
+                                  )
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '()
    ;; Defines the behaviour of Spacemacs when installing packages.
@@ -142,8 +150,11 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         spacemacs-light
                          omtose-darker
+                         doom-nova
+                         doom-one-light
+                         doom-one
+                         spacemacs-light
                          brin
                          subatomic
                          solarized-light
@@ -165,7 +176,8 @@ values."
                                :size 13
                                :weight normal
                                :width normal
-                               :powerline-scale 1.0)
+                               :powerline-scale 1.3)
+
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -234,7 +246,7 @@ values."
    dotspacemacs-helm-use-fuzzy 'always
    ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
    ;; several times cycle between the kill ring content. (default nil)
-   dotspacemacs-enable-paste-micro-state t
+   dotspacemacs-enable-paste-micro-state nil
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
    dotspacemacs-which-key-delay 0.4
@@ -354,10 +366,28 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
+  (doom-themes-neotree-config)
+  (defun my/org-mode-hook ()
+    (set-face-attribute 'org-level-1 nil :height 1.0)
+    (doom-themes-org-config))
+  (add-hook 'org-load-hook #'my/org-mode-hook)
+  (use-package spaceline-all-the-icons
+    :after spaceline
+    :config (spaceline-all-the-icons-theme))
+  (setq-default spaceline-all-the-icons-separator-type 'none)
+  (spacemacs/load-theme 'doom-nova)
+  (setq initial-major-mode 'org-mode)                  ; default scratch pos to org mode
+  (require 'helm-bookmark)
+  ;; (push '("melpa-stable" . "stable.melpa.org/packages/") configuration-layer--elpa-archives)
+  ;; (push '(helm . "melpa-stable") package-pinned-packages)
   (global-vi-tilde-fringe-mode -1)
   (setq powerline-default-separator 'nil)
   (setenv "PATH" (concat (getenv "PATH") ":" dotspacemacs-directory "node_modules/.bin/"))
   (add-to-list 'exec-path (concat dotspacemacs-directory "node_modules/.bin/"))
+  ;; (setenv "PATH" (concat (getenv "PATH") ":" dotspacemacs-directory "~/.composer/vendor/bin/"))
+  ;; (add-to-list 'exec-path (concat dotspacemacs-directory "~/.composer/vendor/bin/"))
+  (setq flycheck-php-phpcs-executable "~/.composer/vendor/bin/phpcs")
   (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
   (add-hook 'js2-mode-hook (lambda () (flyspell-mode-off)))
   (global-set-key (kbd "C-c w w") 'whitespace-mode)
@@ -366,9 +396,7 @@ you should place your code here."
   (spacemacs/toggle-mode-line-minor-modes-off)
   (spacemacs/toggle-mode-line-version-control-off)
   (spacemacs/toggle-mode-line-org-clock-on)
-  (when (member 'atom-one-dark custom-enabled-themes)
-    (load-theme 'atom-customizations))
-
+  (global-evil-mc-mode 1)
   ;; Puml conf
   (add-to-list 'auto-mode-alist '("\\.puml\\'" . puml-mode))
   (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . puml-mode))
@@ -402,15 +430,15 @@ you should place your code here."
                :title "Pomodoro"
                :body "Pomodoro Killed!\nOne does not simply kill a pomodoro!"
                :timeout 0)))
-  (custom-set-faces
-   '(ediff-current-diff-C ((t (:background "saddle brown"))))
-   '(ediff-even-diff-A ((t (:background "grey32"))))
-   '(ediff-even-diff-B ((t (:background "grey32"))))
-   '(ediff-even-diff-C ((t (:background "grey32"))))
-   '(ediff-fine-diff-B ((t (:background "dark green"))))
-   '(ediff-odd-diff-A ((t (:background "grey24"))))
-   '(ediff-odd-diff-B ((t (:background "grey24"))))
-   '(ediff-odd-diff-C ((t (:background "grey24")))))
+  ;; (custom-set-faces
+  ;;  '(ediff-current-diff-C ((t (:background "saddle brown"))))
+  ;;  '(ediff-even-diff-A ((t (:background "grey32"))))
+  ;;  '(ediff-even-diff-B ((t (:background "grey32"))))
+  ;;  '(ediff-even-diff-C ((t (:background "grey32"))))
+  ;;  '(ediff-fine-diff-B ((t (:background "dark green"))))
+  ;;  '(ediff-odd-diff-A ((t (:background "grey24"))))
+  ;;  '(ediff-odd-diff-B ((t (:background "grey24"))))
+  ;;  '(ediff-odd-diff-C ((t (:background "grey24")))))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
