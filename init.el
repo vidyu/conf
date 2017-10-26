@@ -367,6 +367,36 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
+  ;; (add-hook 'prog-mode-hook
+  ;;           (lambda ()
+  ;;             (push '("===" . ?≣) prettify-symbols-alist)))
+  (add-hook 'js2-mode-hook
+            (lambda ()
+              (setq-local prettify-symbols-alist '(
+                                                   ("function" . ?λ)
+                                                   ("null" . ?∅)
+                                                   ("&&" . ?∧)
+                                                   ("||" . ?∨)
+                                                   ("!==" . ?≢)
+                                                   ("===" . ?≣)
+                                                   ("=>" . ?⇒)
+                                                   (">=" . ?≥)
+                                                   ("<=" . ?≤)))))
+  (add-hook 'php-mode-hook
+            (lambda ()
+              (setq-local prettify-symbols-alist '(
+                                                   ("->" . ?→)
+                                                   ("null" . ?∅)
+                                                   ("&&" . ?∧)
+                                                   ("||" . ?∨)
+                                                   ("!==" . ?≢)
+                                                   ("===" . ?≣)
+                                                   ("=>" . ?⇒)
+                                                   (">=" . ?≥)
+                                                   ("<=" . ?≤)))
+              (prettify-symbols-mode +1)
+              ))
+  (global-prettify-symbols-mode +1)
   (doom-themes-neotree-config)
   (defun my/org-mode-hook ()
     (set-face-attribute 'org-level-1 nil :height 1.0)
