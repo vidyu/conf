@@ -1,15 +1,13 @@
 #+STARTUP: indent
 #+DRAWERS: HIDDEN STATE PROPERTIES
 #+AUTHOR: Vidyu Krastev
-#+TITLE: oh-my-zsh Configurations
+#+TITLE: prezto Configurations
 
-* Install oh-my-zsh
+* Install [[https://github.com/sorin-ionescu/prezto][prezto]] 
 
-** Update git submodules
-~git submodule init~
+** The personal changes are in the following files
 
-~git submodule update~
-
-* Link
-- zshrc -> ~/.zshrc
-- zshenv -> ~/.zshenv
+- zpreztorc
+- zprofile
+- zenv
+- zshrc
