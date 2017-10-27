@@ -301,13 +301,13 @@ bar {
         i3bar_command i3bar -t
         # status_command i3blocks
         # status_command py3status
-        status_command bumblebee-status -m nic cpu pasource pasink datetime -p interval=2.5 datetime.format="%a, %b %x %X" -t gruvbox-powerline
+        status_command bumblebee-status -m nic cpu pasource pasink datetime -p interval=2.5 datetime.format="%a, %b %x %X" nic.states="^down" -t gruvbox-powerline
         colors {
                # Whole color settings
-                background #22222200
-                focused_workspace  #4c789988 #28557788 #ffffff
-                active_workspace   #22222200 #22222200 #ffffff
-                inactive_workspace #22222200 #22222200 #888888
+                background #222222AA
+                focused_workspace  #28557788 #28557788 #ffffff
+                active_workspace   #33333388 #5f676a88 #ffffff
+                inactive_workspace #22222288 #22222288 #888888
                 urgent_workspace   #2f343a88 #90000088 #ffffff
                 binding_mode       #2f343a88 #90000088 #ffffff
         }
@@ -319,10 +319,10 @@ bar {
         i3bar_command i3bar -t
         colors {
                # Whole color settings
-                background #22222200
-                focused_workspace  #4c789988 #28557788 #ffffff
-                active_workspace   #22222200 #22222200 #ffffff
-                inactive_workspace #22222200 #22222200 #888888
+                background #22222288
+                focused_workspace  #28557788 #28557788 #ffffff
+                active_workspace   #33333388 #5f676a88 #ffffff
+                inactive_workspace #22222288 #22222288 #888888
                 urgent_workspace   #2f343a88 #90000088 #ffffff
                 binding_mode       #2f343a88 #90000088 #ffffff
         }
