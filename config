@@ -216,7 +216,7 @@ set $mode_power Power: (l) lock, (e) exit
 
 mode "$mode_power" {
         bindsym l exec --no-startup-id xscreensaver-command --lock, mode "default"
-        bindsym e exec i3-msg exit
+        bindsym e exec gnome-session-quit --force
         # bindsym s exec --no-startup-id $HOME/.i3/i3exit suspend, mode "default"
         # bindsym h exec --no-startup-id $HOME/.i3/i3exit hibernate, mode "default"
         # bindsym r exec --no-startup-id $HOME/.i3/i3exit reboot, mode "default"
@@ -257,6 +257,10 @@ mode "resize" {
         bindsym j resize grow height 5 px or 5 ppt
         bindsym k resize shrink height 5 px or 5 ppt
         bindsym l resize grow width 5 px or 5 ppt
+        bindsym Shift+h resize shrink width 20 px or 20 ppt
+        bindsym Shift+j resize grow height 20 px or 20 ppt
+        bindsym Shift+k resize shrink height 20 px or 20 ppt
+        bindsym Shift+l resize grow width 20 px or 20 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -282,7 +286,7 @@ exec ~/.screenlayout/2screens.sh
 exec compton -b
 # exec feh --bg-scale ~/Pictures/wallpaper-2309838.jpg
 exec nitrogen --restore
-exec --no-startup-id pasystray
+# exec --no-startup-id pasystray
 # exec pasystray &
 exec dunst &
 exec sleep 2s && xxkb &
@@ -298,38 +302,38 @@ bar {
         output VGA1
         tray_output VGA1
         strip_workspace_numbers yes
-        i3bar_command i3bar -t
+        i3bar_command i3bar
         # status_command i3blocks
         # status_command py3status
         status_command bumblebee-status -m nic cpu pasource pasink datetime -p interval=2.5 datetime.format="%a, %b %x %X" -t gruvbox-powerline
         colors {
                # Whole color settings
-                background #22222200
-                focused_workspace  #4c789988 #28557788 #ffffff
-                active_workspace   #22222200 #22222200 #ffffff
-                inactive_workspace #22222200 #22222200 #888888
-                urgent_workspace   #2f343a88 #90000088 #ffffff
-                binding_mode       #2f343a88 #90000088 #ffffff
+                background #22222244
+                focused_workspace  #4c789944 #28557744 #ffffff
+                active_workspace   #22222244 #22222244 #ffffff
+                inactive_workspace #22222244 #22222244 #888888
+                urgent_workspace   #2f343a44 #90000044 #ffffff
+                binding_mode       #2f343a44 #90000044 #ffffff
         }
 }
 bar {
         output HDMI1
         tray_output VGA1
         strip_workspace_numbers yes
-        i3bar_command i3bar -t
+        i3bar_command i3bar
         colors {
                # Whole color settings
-                background #22222200
-                focused_workspace  #4c789988 #28557788 #ffffff
-                active_workspace   #22222200 #22222200 #ffffff
-                inactive_workspace #22222200 #22222200 #888888
-                urgent_workspace   #2f343a88 #90000088 #ffffff
-                binding_mode       #2f343a88 #90000088 #ffffff
+                background #22222244
+                focused_workspace  #4c789944 #28557744 #ffffff
+                active_workspace   #22222244 #22222244 #ffffff
+                inactive_workspace #22222244 #22222244 #888888
+                urgent_workspace   #2f343a44 #90000044 #ffffff
+                binding_mode       #2f343a44 #90000044 #ffffff
         }
 }
 
-smart_gaps on
-gaps inner 10
+# smart_gaps on
+# gaps inner 10
 
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
