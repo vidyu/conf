@@ -25,6 +25,8 @@ focus_follows_mouse no
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window none
 new_float none
+
+for_window [class="Pinentry"] floating enable
 # use window title, but no border
 bindsym $mod+t border normal 3
 # use no window title and a thick border
@@ -302,6 +304,7 @@ bar {
         output HDMI1
         tray_output HDMI1
         strip_workspace_numbers yes
+        workspace_buttons no
         i3bar_command i3bar
         # status_command i3blocks
         # status_command py3status
@@ -317,10 +320,31 @@ bar {
         }
 }
 bar {
-        output LVDS1
-        tray_output HDMI1
+        output HDMI1
+        tray_output none
+        position top
+        workspace_buttons yes
         strip_workspace_numbers yes
+        # status_command i3blocks
+        # status_command py3status
+        status_command bumblebee-status -m title
+        colors {
+               # Whole color settings
+                background #222222AA
+                focused_workspace  #28557788 #28557788 #ffffff
+                active_workspace   #33333388 #5f676a88 #ffffff
+                inactive_workspace #22222288 #22222288 #888888
+                urgent_workspace   #2f343a88 #90000088 #ffffff
+                binding_mode       #2f343a88 #90000088 #ffffff
+        }
+}
+bar {
+        output LVDS1
+        tray_output none
+        position top
         i3bar_command i3bar
+        status_command bumblebee-status -m title
+        strip_workspace_numbers yes
         colors {
                # Whole color settings
                 background #22222288
