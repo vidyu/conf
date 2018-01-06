@@ -298,61 +298,59 @@ exec xscreensaver &
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # bar toggle, hide or show
-bindsym $mod+m bar mode toggle
+bindsym $mod+m bar mode toggle 2
 
 bar {
         output HDMI1
         tray_output HDMI1
+        position top
         strip_workspace_numbers yes
-        workspace_buttons no
         i3bar_command i3bar
+        status_command bumblebee-status -m title
         # status_command i3blocks
         # status_command py3status
-        status_command bumblebee-status -m nic cpu pasource pasink datetime -p interval=2.5 datetime.format="%a, %b %x %X" nic.states="^down" -t gruvbox-powerline
         colors {
                # Whole color settings
-                background #222222AA
-                focused_workspace  #28557788 #28557788 #ffffff
-                active_workspace   #33333388 #5f676a88 #ffffff
-                inactive_workspace #22222288 #22222288 #888888
-                urgent_workspace   #2f343a88 #90000088 #ffffff
-                binding_mode       #2f343a88 #90000088 #ffffff
+                background #f9f9f9
+                focused_workspace  #f8f8f8 #f9f9f9 #111111
+                active_workspace   #f9f9f9 #f9f9f9 #111111
+                inactive_workspace #c8c8c8 #c8c8c8 #111111
+                urgent_workspace   #b38f00 #b38f00 #111111
+                binding_mode       #f9f9f9  #f9f9f9 #111111
         }
 }
 bar {
-        output HDMI1
-        tray_output none
-        position top
-        workspace_buttons yes
-        strip_workspace_numbers yes
-        # status_command i3blocks
-        # status_command py3status
-        status_command bumblebee-status -m title
-        colors {
+      output HDMI1
+      id 2
+      position bottom
+      tray_output no
+      workspace_buttons no
+      status_command bumblebee-status -m nic cpu pasource pasink datetime -p interval=2.5 datetime.format="%a, %b %x %X" nic.states="^down" -t gruvbox-powerline
+      tray_output none
+      colors {
                # Whole color settings
-                background #222222AA
-                focused_workspace  #28557788 #28557788 #ffffff
-                active_workspace   #33333388 #5f676a88 #ffffff
-                inactive_workspace #22222288 #22222288 #888888
-                urgent_workspace   #2f343a88 #90000088 #ffffff
-                binding_mode       #2f343a88 #90000088 #ffffff
-        }
+                background #282828
+                focused_workspace  #4c789944 #28557744 #ffffff
+                active_workspace   #282828 #282828 #fbf1c7
+                inactive_workspace #282828 #282828 #888888
+                urgent_workspace   #2f343a44 #90000044 #ffffff
+                binding_mode       #2f343a44 #90000044 #ffffff
+      }
 }
 bar {
         output LVDS1
         tray_output none
         position top
         i3bar_command i3bar
-        status_command bumblebee-status -m title
         strip_workspace_numbers yes
         colors {
                # Whole color settings
-                background #22222288
-                focused_workspace  #28557788 #28557788 #ffffff
-                active_workspace   #33333388 #5f676a88 #ffffff
-                inactive_workspace #22222288 #22222288 #888888
-                urgent_workspace   #2f343a88 #90000088 #ffffff
-                binding_mode       #2f343a88 #90000088 #ffffff
+                background #f9f9f9
+                focused_workspace  #f8f8f8 #f9f9f9 #111111
+                active_workspace   #f9f9f9 #f9f9f9 #111111
+                inactive_workspace #c8c8c8 #c8c8c8 #111111
+                urgent_workspace   #b38f00 #b38f00 #111111
+                binding_mode       #f9f9f9  #f9f9f9 #111111
         }
 }
 
