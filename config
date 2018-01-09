@@ -27,6 +27,7 @@ new_window none
 new_float none
 
 for_window [class="Pinentry"] floating enable
+for_window [class=".*"] title_format " %title"
 # use window title, but no border
 bindsym $mod+t border normal 3
 # use no window title and a thick border
@@ -35,10 +36,10 @@ bindsym $mod+y border pixel 3
 bindsym $mod+u border none
 
 # class                 border    backgr.   text    indicator   child_border
-client.focused          #4c789988 #28557788 #ffffff #2e9ef488   #28557788
-client.focused_inactive #33333388 #5f676a88 #ffffff #484e5088   #5f676a88
-client.unfocused        #33333388 #22222222 #000000 #292d2e88   #22222288
-client.urgent           #2f343a88 #90000088 #ffffff #90000088   #90000088
+client.focused          #e9e9e9   #f9f9f9   #111111 #2e9ef488   #28557788
+client.focused_inactive #222222dd #222222dd #f9f9f9 #484e5088   #5f676a88
+client.unfocused        #555555dd #444444dd #f9f9f9 #292d2e88   #22222288
+client.urgent           #2f343add #900000dd #ffffff #90000088   #90000088
 client.placeholder      #00000088 #0c0c0c22 #ffffff #00000088   #0c0c0c88
 
 client.background       #ffffff
