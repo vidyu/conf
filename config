@@ -27,6 +27,7 @@ new_window none
 new_float none
 
 for_window [class="Pinentry"] floating enable
+for_window [class=".*"] title_format " %title"
 # use window title, but no border
 bindsym $mod+t border normal 3
 # use no window title and a thick border
@@ -35,10 +36,10 @@ bindsym $mod+y border pixel 3
 bindsym $mod+u border none
 
 # class                 border    backgr.   text    indicator   child_border
-client.focused          #4c789988 #28557788 #ffffff #2e9ef488   #28557788
-client.focused_inactive #33333388 #5f676a88 #ffffff #484e5088   #5f676a88
-client.unfocused        #33333388 #22222222 #000000 #292d2e88   #22222288
-client.urgent           #2f343a88 #90000088 #ffffff #90000088   #90000088
+client.focused          #e9e9e9   #f9f9f9   #111111 #2e9ef488   #28557788
+client.focused_inactive #222222dd #222222dd #f9f9f9 #484e5088   #5f676a88
+client.unfocused        #555555dd #444444dd #f9f9f9 #292d2e88   #22222288
+client.urgent           #2f343add #900000dd #ffffff #90000088   #90000088
 client.placeholder      #00000088 #0c0c0c22 #ffffff #00000088   #0c0c0c88
 
 client.background       #ffffff
@@ -310,13 +311,14 @@ bar {
         # status_command i3blocks
         # status_command py3status
         colors {
-               # Whole color settings
+                # Whole color settings
                 background #f9f9f9
-                focused_workspace  #f8f8f8 #f9f9f9 #111111
-                active_workspace   #f9f9f9 #f9f9f9 #111111
-                inactive_workspace #c8c8c8 #c8c8c8 #111111
-                urgent_workspace   #b38f00 #b38f00 #111111
-                binding_mode       #f9f9f9  #f9f9f9 #111111
+                # <colorclass>     <border> <background> <text>
+                focused_workspace  #f8f8f8  #f9f9f9      #111111
+                active_workspace   #f9f9f9  #f9f9f9      #111111
+                inactive_workspace #c8c8c8  #c8c8c8      #111111
+                urgent_workspace   #b38f00  #b38f00      #111111
+                binding_mode       #f9f9f9  #f9f9f9      #111111
         }
 }
 bar {
@@ -328,13 +330,14 @@ bar {
       status_command bumblebee-status -m nic cpu pasource pasink datetime -p interval=2.5 datetime.format="%a, %b %x %X" nic.states="^down" -t gruvbox-powerline
       tray_output none
       colors {
-               # Whole color settings
+                # Whole color settings
                 background #282828
-                focused_workspace  #4c789944 #28557744 #ffffff
-                active_workspace   #282828 #282828 #fbf1c7
-                inactive_workspace #282828 #282828 #888888
-                urgent_workspace   #2f343a44 #90000044 #ffffff
-                binding_mode       #2f343a44 #90000044 #ffffff
+                # <colorclass>     <border>  <background> <text>
+                focused_workspace  #4c789944 #28557744    #ffffff
+                active_workspace   #282828   #282828      #fbf1c7
+                inactive_workspace #282828   #282828      #888888
+                urgent_workspace   #2f343a44 #90000044    #ffffff
+                binding_mode       #2f343a44 #90000044    #ffffff
       }
 }
 bar {
@@ -344,13 +347,14 @@ bar {
         i3bar_command i3bar
         strip_workspace_numbers yes
         colors {
-               # Whole color settings
+                # Whole color settings
                 background #f9f9f9
-                focused_workspace  #f8f8f8 #f9f9f9 #111111
-                active_workspace   #f9f9f9 #f9f9f9 #111111
-                inactive_workspace #c8c8c8 #c8c8c8 #111111
-                urgent_workspace   #b38f00 #b38f00 #111111
-                binding_mode       #f9f9f9  #f9f9f9 #111111
+                # <colorclass>     <border> <background> <text>
+                focused_workspace  #f8f8f8  #f9f9f9      #111111
+                active_workspace   #f9f9f9  #f9f9f9      #111111
+                inactive_workspace #c8c8c8  #c8c8c8      #111111
+                urgent_workspace   #b38f00  #b38f00      #111111
+                binding_mode       #f9f9f9  #f9f9f9      #111111
         }
 }
 
