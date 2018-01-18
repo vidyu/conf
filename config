@@ -314,9 +314,9 @@ bar {
                 # Whole color settings
                 background #f9f9f9
                 # <colorclass>     <border> <background> <text>
-                focused_workspace  #f8f8f8  #f9f9f9      #111111
-                active_workspace   #f9f9f9  #f9f9f9      #111111
-                inactive_workspace #c8c8c8  #c8c8c8      #111111
+                focused_workspace  #c8c8c8  #f9f9f9      #111111
+                active_workspace   #c8c8c8  #c8c8c8      #111111
+                inactive_workspace #f9f9f9  #f9f9f9      #111111
                 urgent_workspace   #b38f00  #b38f00      #111111
                 binding_mode       #f9f9f9  #f9f9f9      #111111
         }
@@ -335,7 +335,7 @@ bar {
                 # <colorclass>     <border>  <background> <text>
                 focused_workspace  #4c789944 #28557744    #ffffff
                 active_workspace   #282828   #282828      #fbf1c7
-                inactive_workspace #282828   #282828      #888888
+                inactive_workspace #f9f9f9   #282828      #888888
                 urgent_workspace   #2f343a44 #90000044    #ffffff
                 binding_mode       #2f343a44 #90000044    #ffffff
       }
@@ -350,9 +350,9 @@ bar {
                 # Whole color settings
                 background #f9f9f9
                 # <colorclass>     <border> <background> <text>
-                focused_workspace  #f8f8f8  #f9f9f9      #111111
-                active_workspace   #f9f9f9  #f9f9f9      #111111
-                inactive_workspace #c8c8c8  #c8c8c8      #111111
+                focused_workspace  #c8c8c8  #f9f9f9      #111111
+                active_workspace   #c8c8c8  #c8c8c8      #111111
+                inactive_workspace #f9f9f9  #f9f9f9      #111111
                 urgent_workspace   #b38f00  #b38f00      #111111
                 binding_mode       #f9f9f9  #f9f9f9      #111111
         }
