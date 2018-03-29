@@ -33,7 +33,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(haskell
      sql
      nginx
      yaml
@@ -200,7 +200,9 @@ It should only modify the values of Spacemacs settings."
    ;; to create your own spaceline theme. Value can be a symbol or list with\
    ;; additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(all-the-icons :separator none :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(all-the-icons
+                                  :separator none
+                                  :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -208,7 +210,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("DejaVuSans Mono"
                                :size 14
                                :weight normal
                                :width normal)
@@ -401,6 +403,9 @@ It should only modify the values of Spacemacs settings."
    ;; emphasis the current one). (default 'all)
    dotspacemacs-highlight-delimiters 'all
 
+   ;; If non-nil, start an Emacs server if one is not already running.
+   dotspacemacs-enable-server t
+
    ;; If non-nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
    dotspacemacs-persistent-server nil
@@ -424,6 +429,7 @@ It should only modify the values of Spacemacs settings."
    ;; %P - percent of buffer above bottom of window, perhaps plus Top, or Bot or All
    ;; %m - mode name
    ;; %n - Narrow if appropriate
+   
    ;; %z - mnemonics of buffer, terminal, and keyboard coding systems
    ;; %Z - like %z, but including the end-of-line format
    ;; (default "%I@%S")
@@ -521,6 +527,8 @@ before packages are loaded."
               ))
   (global-prettify-symbols-mode +1)
   (doom-themes-neotree-config)
+  (doom-themes-org-config)
+  (doom-themes-visual-bell-config)
   (defun my/org-mode-hook ()
     (set-face-attribute 'org-level-1 nil :height 1.0)
     (doom-themes-org-config))
@@ -537,8 +545,8 @@ before packages are loaded."
   ;; (push '("melpa-stable" . "stable.melpa.org/packages/") configuration-layer--elpa-archives)
   ;; (push '(helm . "melpa-stable") package-pinned-packages)
   (global-vi-tilde-fringe-mode -1)
-  (setq powerline-default-separator 'nil)
   (setq spaceline-all-the-icons-clock-always-visible nil)
+  (spaceline-toggle-all-the-icons-hud-off)
   (spaceline-all-the-icons-toggle-slim)
   (setq flycheck-php-phpcs-executable "~/.composer/vendor/bin/phpcs")
   (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
