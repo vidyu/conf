@@ -56,7 +56,7 @@ focus_on_window_activation urgent
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec terminator
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -172,16 +172,16 @@ set $w9 "9:"
 set $w10 "10:"
 
 # set workspaces screens
-workspace $w1 output HDMI1
-workspace $w2 output HDMI1
-workspace $w3 output HDMI1
-workspace $w4 output HDMI1
-workspace $w5 output HDMI1
-workspace $w6 output VGA1
-workspace $w7 output VGA1
-workspace $w8 output VGA1
-workspace $w9 output VGA1
-workspace $w10 output VGA1
+workspace $w1 output VGA1
+workspace $w2 output VGA1
+workspace $w3 output VGA1
+workspace $w4 output VGA1
+workspace $w5 output VGA1
+workspace $w6 output HDMI1
+workspace $w7 output HDMI1
+workspace $w8 output HDMI1
+workspace $w9 output HDMI1
+workspace $w10 output HDMI1
 # switch to workspace
 bindsym $mod+1 workspace $w1
 bindsym $mod+2 workspace $w2
@@ -303,10 +303,10 @@ exec xscreensaver &
 bindsym $mod+m bar mode toggle 2
 
 bar {
-        output VGA1
+        output HDMI1
         position top
         id 1
-        tray_output VGA1
+        tray_output HDMI1
         strip_workspace_numbers yes
         i3bar_command i3bar
         # status_command i3blocks
@@ -323,7 +323,7 @@ bar {
         }
 }
 bar {
-      output VGA1
+      output HDMI1
       id 2
       position bottom
       tray_output no
@@ -342,7 +342,7 @@ bar {
       }
 }
 bar {
-        output HDMI1
+        output VGA1
         position top
         id 3
         tray_output none
