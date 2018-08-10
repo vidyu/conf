@@ -75,9 +75,10 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+t exec --no-startup-id pkill compton
 # bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+d exec rofi -show drun
-bindsym $mod+p exec rofi-pass --root ~/.password-store-work
-bindsym $mod+Shift+p exec rofi-pass --root ~/.password-store-private
-# bindsym $mod+p exec gopass ls --flat | rofi -dmenu -i | xargs --no-run-if-empty gopass show -c 
+bindsym $mod+Shift+o exec rofimoji
+# bindsym $mod+p exec rofi-pass --root ~/.password-store-work
+# bindsym $mod+Shift+p exec rofi-pass --root ~/.password-store-private
+bindsym $mod+p exec gopass ls --flat | rofi -dmenu -i -p '☛' | xargs --no-run-if-empty gopass show -c 
 bindsym $mod+x exec rofi -show run
 bindsym $alt+Tab exec rofi -show window
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
@@ -172,16 +173,17 @@ set $w9 "9:"
 set $w10 "10:"
 
 # set workspaces screens
-workspace $w1 output VGA1
-workspace $w2 output VGA1
-workspace $w3 output VGA1
-workspace $w4 output VGA1
-workspace $w5 output VGA1
-workspace $w6 output HDMI1
-workspace $w7 output HDMI1
-workspace $w8 output HDMI1
-workspace $w9 output HDMI1
-workspace $w10 output HDMI1
+workspace $w1 output HDMI1
+workspace $w2 output HDMI1
+workspace $w3 output HDMI1
+workspace $w4 output HDMI1
+workspace $w5 output HDMI1
+workspace $w6 output VGA1
+workspace $w7 output VGA1
+workspace $w8 output VGA1
+workspace $w9 output VGA1
+workspace $w10 output VGA1
+
 # switch to workspace
 bindsym $mod+1 workspace $w1
 bindsym $mod+2 workspace $w2
@@ -303,12 +305,13 @@ exec xscreensaver &
 bindsym $mod+m bar mode toggle 2
 
 bar {
-        output HDMI1
+        output VGA1
         position top
         id 1
-        tray_output HDMI1
+        tray_output VGA1
         strip_workspace_numbers yes
-        i3bar_command i3bar
+        # i3bar_command i3bar
+        status_command bumblebee-status -m title
         # status_command i3blocks
         # status_command py3status
         colors {
@@ -323,7 +326,7 @@ bar {
         }
 }
 bar {
-      output HDMI1
+      output VGA1
       id 2
       position bottom
       tray_output no
@@ -342,7 +345,7 @@ bar {
       }
 }
 bar {
-        output VGA1
+        output HDMI1
         position top
         id 3
         tray_output none
