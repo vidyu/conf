@@ -217,11 +217,12 @@ bindsym XF86Sleep exec xscreensaver-command --lock
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-set $mode_power Power: (l) lock, (e) exit
+set $mode_power Power: (l) lock, (e) exit, (s) suspend
 
 mode "$mode_power" {
         bindsym l exec --no-startup-id xscreensaver-command --lock, mode "default"
         bindsym e exec gnome-session-quit --force
+        bindsym s exec systemctl suspend, mode "default"
         # bindsym s exec --no-startup-id $HOME/.i3/i3exit suspend, mode "default"
         # bindsym h exec --no-startup-id $HOME/.i3/i3exit hibernate, mode "default"
         # bindsym r exec --no-startup-id $HOME/.i3/i3exit reboot, mode "default"
