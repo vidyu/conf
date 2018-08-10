@@ -56,7 +56,7 @@ focus_on_window_activation urgent
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec terminator
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -75,8 +75,10 @@ bindsym XF86MonBrightnessDown exec "xbacklight -dec 20; notify-send 'brightness 
 # bindsym $mod+t exec --no-startup-id pkill compton
 # bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+d exec rofi -show drun
-# bindsym $mod+p exec rofi-pass
-bindsym $mod+p exec gopass ls --flat | rofi -dmenu -i | xargs --no-run-if-empty gopass show -c 
+bindsym $mod+Shift+o exec rofimoji
+# bindsym $mod+p exec rofi-pass --root ~/.password-store-work
+# bindsym $mod+Shift+p exec rofi-pass --root ~/.password-store-private
+bindsym $mod+p exec gopass ls --flat | rofi -dmenu -i -p '☛' | xargs --no-run-if-empty gopass show -c 
 bindsym $mod+x exec rofi -show run
 bindsym $alt+Tab exec rofi -show window
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
