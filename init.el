@@ -55,9 +55,9 @@ This function should only modify configuration layer settings."
                       auto-completion-enable-help-tooltip t)
      ;; better-defaults
      ibuffer
-     ;; emoji
+     emoji
      emacs-lisp
-     javascript
+     (javascript :variables javascript-backend 'tern)
      html
      git
      restclient
@@ -66,10 +66,11 @@ This function should only modify configuration layer settings."
      docker
      ;; treemacs
      org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     spell-checking
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
+     (spell-checking :variables
+                     spell-checking-enable-by-default nil)
      syntax-checking
      version-control
      spacemacs-layouts
@@ -87,7 +88,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages '(
                                       plantuml-mode
                                       geben
-                                      js-import
+                                      import-js
                                       doom-themes
                                       )
    ;; A list of packages that cannot be updated.
@@ -269,21 +270,6 @@ It should only modify the values of Spacemacs settings."
    ;; works in the GUI. (default nil)
    dotspacemacs-distinguish-gui-tab nil
 
-   ;; If non-nil `Y' is remapped to `y$' in Evil states. (default nil)
-   dotspacemacs-remap-Y-to-y$ nil
-
-   ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
-   ;; there. (default t)
-   dotspacemacs-retain-visual-state-on-shift t
-
-   ;; If non-nil, `J' and `K' move lines up and down when in visual mode.
-   ;; (default nil)
-   dotspacemacs-visual-line-move-text nil
-
-   ;; If non-nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
-   ;; (default nil)
-   dotspacemacs-ex-substitute-global nil
-
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
 
@@ -312,23 +298,6 @@ It should only modify the values of Spacemacs settings."
 
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
-
-   ;; If non-nil, `helm' will try to minimize the space it uses. (default nil)
-   dotspacemacs-helm-resize nil
-
-   ;; if non-nil, the helm header is hidden when there is only one source.
-   ;; (default nil)
-   dotspacemacs-helm-no-header nil
-
-   ;; define the position to display `helm', options are `bottom', `top',
-   ;; `left', or `right'. (default 'bottom)
-   dotspacemacs-helm-position 'bottom
-
-   ;; Controls fuzzy matching in helm. If set to `always', force fuzzy matching
-   ;; in all non-asynchronous sources. If set to `source', preserve individual
-   ;; source settings. Else, disable fuzzy matching in all sources.
-   ;; (default 'always)
-   dotspacemacs-helm-use-fuzzy 'always
 
    ;; If non-nil, the paste transient-state is enabled. While enabled, pressing
    ;; `p' several times cycles through the elements in the `kill-ring'.
@@ -386,7 +355,9 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil show the color guide hint for transient state keys. (default t)
    dotspacemacs-show-transient-state-color-guide t
 
-   ;; If non-nil unicode symbols are displayed in the mode line. (default t)
+   ;; If non-nil unicode symbols are displayed in the mode line.
+   ;; If you use Emacs as a daemon and wants unicode characters only in GUI set
+   ;; the value to quoted `display-graphic-p'. (default t)
    dotspacemacs-mode-line-unicode-symbols t
 
    ;; If non-nil smooth scrolling (native-scrolling) is enabled. Smooth
@@ -430,6 +401,13 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil, start an Emacs server if one is not already running.
    ;; (default nil)
    dotspacemacs-enable-server nil
+
+   ;; Set the emacs server socket location.
+   ;; If nil, uses whatever the Emacs default is, otherwise a directory path
+   ;; like \"~/.emacs.d/server\". It has no effect if
+   ;; `dotspacemacs-enable-server' is nil.
+   ;; (default nil)
+   dotspacemacs-server-socket-dir nil
 
    ;; If non-nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
@@ -479,6 +457,14 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    dotspacemacs-pretty-docs nil))
 
+(defun dotspacemacs/user-env ()
+  "Environment variables setup.
+This function defines the environment variables for your Emacs session. By
+default it calls `spacemacs/load-spacemacs-env' which loads the environment
+variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
+See the header of this file for more information."
+  (spacemacs/load-spacemacs-env))
+
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
 This function is called immediately after `dotspacemacs/init', before layer
@@ -510,9 +496,9 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
-This function is called while dumping Spacemacs configuration. You can
-`require' or `load' the libraries of your choice that will be included
-in the dump."
+This function is called only while dumping Spacemacs configuration. You can
+`require' or `load' the libraries of your choice that will be included in the
+dump."
   )
 
 (defun dotspacemacs/user-config ()
@@ -521,15 +507,7 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  ;; (spaceline-all-the-icons--setup-anzu)            ;; Enable anzu searching
-  ;; (spaceline-all-the-icons--setup-package-updates) ;; Enable package update indicator
-  ;; (spaceline-all-the-icons--setup-git-ahead)       ;; Enable # of commits ahead of upstream in git
-  ;; (spaceline-all-the-icons--setup-paradox)         ;; Enable Paradox mode line
-  ;; (spaceline-all-the-icons--setup-neotree)         ;; Enable Neotree mode line (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
-
-  ;; (add-hook 'prog-mode-hook
-  ;;           (lambda ()
-  ;;             (push '("===" . ?≣) prettify-symbols-alist)))
+  (add-hook 'after-init-hook #'global-emojify-mode)
   (add-hook 'js2-mode-hook
             (lambda ()
               (setq-local prettify-symbols-alist '(
@@ -584,8 +562,8 @@ before packages are loaded."
   (global-set-key (kbd "C-c w w") 'whitespace-mode)
   (global-set-key (kbd "C-c w c") 'whitespace-cleanup)
   (global-unset-key (kbd "C-z"))
-  (spacemacs/toggle-mode-line-minor-modes-off)
-  (spacemacs/toggle-mode-line-version-control-off)
+  ;; (spacemacs/toggle-mode-line-minor-modes-off)
+  ;; (spacemacs/toggle-mode-line-version-control-off)
   (spacemacs/toggle-mode-line-org-clock-on)
   (global-evil-mc-mode 1)
   ;; Puml conf
@@ -621,15 +599,6 @@ before packages are loaded."
                :title "Pomodoro"
                :body "Pomodoro Killed!\nOne does not simply kill a pomodoro!"
                :timeout 0)))
-  ;; (custom-set-faces
-  ;;  '(ediff-current-diff-C ((t (:background "saddle brown"))))
-  ;;  '(ediff-even-diff-A ((t (:background "grey32"))))
-  ;;  '(ediff-even-diff-B ((t (:background "grey32"))))
-  ;;  '(ediff-even-diff-C ((t (:background "grey32"))))
-  ;;  '(ediff-fine-diff-B ((t (:background "dark green"))))
-  ;;  '(ediff-odd-diff-A ((t (:background "grey24"))))
-  ;;  '(ediff-odd-diff-B ((t (:background "grey24"))))
-  ;;  '(ediff-odd-diff-C ((t (:background "grey24")))))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
