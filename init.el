@@ -1,4 +1,4 @@
-;; -*- mode: emacs-lisp -*-
+;; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -86,6 +86,7 @@ This function should only modify configuration layer settings."
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(
+                                      reason-mode
                                       plantuml-mode
                                       geben
                                       import-js
@@ -219,13 +220,13 @@ It should only modify the values of Spacemacs settings."
                          doom-one
                          )
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
-   ;; `all-the-icons', `custom', `vim-powerline' and `vanilla'. The first three
-   ;; are spaceline themes. `vanilla' is default Emacs mode-line. `custom' is a
-   ;; user defined themes, refer to the DOCUMENTATION.org for more info on how
-   ;; to create your own spaceline theme. Value can be a symbol or list with\
-   ;; additional properties.
+   ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
+   ;; first three are spaceline themes. `doom' is the doom-emacs mode-line.
+   ;; `vanilla' is default Emacs mode-line. `custom' is a user defined themes,
+   ;; refer to the DOCUMENTATION.org for more info on how to create your own
+   ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(all-the-icons
+   dotspacemacs-mode-line-theme '(doom
                                   :separator none
                                   :separator-scale 1.5)
 
@@ -299,9 +300,9 @@ It should only modify the values of Spacemacs settings."
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
 
-   ;; If non-nil, the paste transient-state is enabled. While enabled, pressing
-   ;; `p' several times cycles through the elements in the `kill-ring'.
-   ;; (default nil)
+   ;; If non-nil, the paste transient-state is enabled. While enabled, after you
+   ;; paste something, pressing `C-j' and `C-k' several times cycles through the
+   ;; elements in the `kill-ring'. (default nil)
    dotspacemacs-enable-paste-transient-state nil
 
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
@@ -545,6 +546,7 @@ before packages are loaded."
   (use-package csv-mode
     :init
     (setq csv-separators '(";" "," " ")))
+  (setq doom-modeline-height 20)
   ;; (use-package spaceline-all-the-icons
   ;;   :after spaceline
   ;;   :config (spaceline-all-the-icons-theme))
@@ -554,9 +556,9 @@ before packages are loaded."
   ;; (push '("melpa-stable" . "stable.melpa.org/packages/") configuration-layer--elpa-archives)
   ;; (push '(helm . "melpa-stable") package-pinned-packages)
   (global-vi-tilde-fringe-mode -1)
-  (setq spaceline-all-the-icons-clock-always-visible nil)
-  (spaceline-toggle-all-the-icons-hud-off)
-  (spaceline-all-the-icons-toggle-slim)
+  ;; (setq spaceline-all-the-icons-clock-always-visible nil)
+  ;; (spaceline-toggle-all-the-icons-hud-off)
+  ;; (spaceline-all-the-icons-toggle-slim)
   (setq flycheck-php-phpcs-executable "~/.composer/vendor/bin/phpcs")
   (add-hook 'js2-mode-hook (lambda () (flyspell-mode-off)))
   (global-set-key (kbd "C-c w w") 'whitespace-mode)
@@ -564,7 +566,7 @@ before packages are loaded."
   (global-unset-key (kbd "C-z"))
   ;; (spacemacs/toggle-mode-line-minor-modes-off)
   ;; (spacemacs/toggle-mode-line-version-control-off)
-  (spacemacs/toggle-mode-line-org-clock-on)
+  ;; (spacemacs/toggle-mode-line-org-clock-on)
   (global-evil-mc-mode 1)
   ;; Puml conf
   (add-to-list 'auto-mode-alist '("\\.puml\\'" . puml-mode))
