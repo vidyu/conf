@@ -303,6 +303,7 @@ exec xscreensaver &
 # finds out, if available)
 # bar toggle, hide or show
 bindsym $mod+m bar mode toggle 2
+bindsym $mod+Shift+m bar mode toggle
 
 bar {
         output VGA1
