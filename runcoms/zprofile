@@ -17,16 +17,19 @@ fi
 # Editors
 #
 
-export EDITOR='nano'
-export VISUAL='nano'
+export EDITOR='vim'
+export VISUAL='gvim'
 export PAGER='less'
+# export ANDROID_HOME=$HOME/.android-sdk
+export JAVA_HOME=/usr/lib/jvm/default
+export STUDIO_JDK=/usr/lib/jvm/default
 
 #
 # Language
 #
 
 if [[ -z "$LANG" ]]; then
-  export LANG='en_US.UTF-8'
+  export LANG='de_DE.UTF-8'
 fi
 
 #
@@ -44,6 +47,9 @@ typeset -gU cdpath fpath mailpath path
 # Set the list of directories that Zsh searches for programs.
 path=(
   /usr/local/{bin,sbin}
+  # $ANDROID_HOME/platform-tools
+  # $ANDROID_HOME/tools
+  /usr/local/heroku/bin
   $path
 )
 
