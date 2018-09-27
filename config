@@ -78,7 +78,8 @@ bindsym $mod+d exec rofi -show drun
 bindsym $mod+Shift+o exec rofimoji
 # bindsym $mod+p exec rofi-pass --root ~/.password-store-work
 # bindsym $mod+Shift+p exec rofi-pass --root ~/.password-store-private
-bindsym $mod+p exec gopass ls --flat | rofi -dmenu -i -p '☛' | xargs --no-run-if-empty gopass show -c 
+# bindsym $mod+p exec gopass ls --flat | rofi -dmenu -i -p '☛' | xargs --no-run-if-empty gopass show -c 
+bindsym $mod+p exec rofi-gopass.js
 bindsym $mod+x exec rofi -show run
 bindsym $alt+Tab exec rofi -show window
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
@@ -292,6 +293,9 @@ exec ~/.screenlayout/2screens.sh
 exec compton -b
 # exec feh --bg-scale ~/Pictures/wallpaper-2309838.jpg
 exec nitrogen --restore
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+exec_always --no-startup-id  ~/.config/polybar/launch.sh
 # exec --no-startup-id pasystray
 # exec pasystray &
 exec dunst &
@@ -304,33 +308,34 @@ exec xscreensaver &
 # bar toggle, hide or show
 bindsym $mod+m bar mode toggle 2
 
-bar {
-        output HDMI1
-        tray_output HDMI1
-        position top
-        strip_workspace_numbers yes
-        i3bar_command i3bar
-        status_command bumblebee-status -m title
-        # status_command i3blocks
-        # status_command py3status
-        colors {
-                # Whole color settings
-                background #f9f9f9
-                # <colorclass>     <border> <background> <text>
-                focused_workspace  #c8c8c8  #f9f9f9      #111111
-                active_workspace   #c8c8c8  #c8c8c8      #111111
-                inactive_workspace #f9f9f9  #f9f9f9      #111111
-                urgent_workspace   #b38f00  #b38f00      #111111
-                binding_mode       #f9f9f9  #f9f9f9      #111111
-        }
-}
+# bar {
+#         output HDMI1
+#         tray_output HDMI1
+#         position top
+#         strip_workspace_numbers yes
+#         i3bar_command i3bar
+#         status_command bumblebee-status -m title
+#         # status_command i3blocks
+#         # status_command py3status
+#         colors {
+#                 # Whole color settings
+#                 background #f9f9f9
+#                 # <colorclass>     <border> <background> <text>
+#                 focused_workspace  #c8c8c8  #f9f9f9      #111111
+#                 active_workspace   #c8c8c8  #c8c8c8      #111111
+#                 inactive_workspace #f9f9f9  #f9f9f9      #111111
+#                 urgent_workspace   #b38f00  #b38f00      #111111
+#                 binding_mode       #f9f9f9  #f9f9f9      #111111
+#         }
+# }
+
 bar {
       output HDMI1
       id 2
       position bottom
       tray_output no
       workspace_buttons no
-      status_command bumblebee-status -m nic cpu pasource pasink datetime -p interval=2.5 datetime.format="%a, %b %x %X" nic.states="^down" -t gruvbox-powerline
+      status_command bumblebee-status -m sensors nic cpu pasource pasink -p interval=2.5 datetime.format="%a, %b %x %X" nic.states="^down" -t gruvbox-powerline
       tray_output none
       colors {
                 # Whole color settings
@@ -343,23 +348,23 @@ bar {
                 binding_mode       #2f343a44 #90000044    #ffffff
       }
 }
-bar {
-        output LVDS1
-        tray_output none
-        position top
-        i3bar_command i3bar
-        strip_workspace_numbers yes
-        colors {
-                # Whole color settings
-                background #f9f9f9
-                # <colorclass>     <border> <background> <text>
-                focused_workspace  #c8c8c8  #f9f9f9      #111111
-                active_workspace   #c8c8c8  #c8c8c8      #111111
-                inactive_workspace #f9f9f9  #f9f9f9      #111111
-                urgent_workspace   #b38f00  #b38f00      #111111
-                binding_mode       #f9f9f9  #f9f9f9      #111111
-        }
-}
+# bar {
+#         output LVDS1
+#         tray_output none
+#         position top
+#         i3bar_command i3bar
+#         strip_workspace_numbers yes
+#         colors {
+#                 # Whole color settings
+#                 background #f9f9f9
+#                 # <colorclass>     <border> <background> <text>
+#                 focused_workspace  #c8c8c8  #f9f9f9      #111111
+#                 active_workspace   #c8c8c8  #c8c8c8      #111111
+#                 inactive_workspace #f9f9f9  #f9f9f9      #111111
+#                 urgent_workspace   #b38f00  #b38f00      #111111
+#                 binding_mode       #f9f9f9  #f9f9f9      #111111
+#         }
+# }
 
 # smart_gaps on
 # gaps inner 10
