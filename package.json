@@ -9,16 +9,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel-eslint": "^7.1.0",
+    "babel-eslint": "10",
     "babel-jscs": "^3.0.0-beta1",
-    "eslint": "^3.17.1",
-    "eslint-config-xo-react": "^0.10.0",
-    "eslint-config-xo-space": "^0.15.0",
-    "eslint-plugin-babel": "^4.1.1",
-    "eslint-plugin-react": "^6.10.0",
+    "eslint": "5",
+    "eslint-config-xo-react": "0.17",
+    "eslint-config-xo-space": "0.20",
+    "eslint-plugin-babel": "5",
+    "eslint-plugin-react": "7",
     "js-beautify": "^1.6.11",
     "jscs": "^3.0.7",
     "jshint": "^2.9.2",
-    "tern": "^0.21.0"
+    "tern": "0.22"
   }
 }
