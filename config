@@ -29,6 +29,9 @@ alert = #bd2c40
 
 [bar/vga]
 monitor = ${env:MONITOR:VGA-1}
+; Locale used to localize various module data (e.g. date)
+; Expects a valid libc locale, for example: sv_SE.UTF-8
+locale = de_DE.UTF-8
 width = 100%
 height = 24
 ;offset-x = 1%
@@ -63,8 +66,8 @@ font-3 = "Wuncon Siji:pixelsize=10"
 
 
 modules-left = i3
-; modules-center = mpd
-modules-right = xkeyboard 
+modules-right = date
+; modules-right = xkeyboard
 
 tray-position = right
 tray-padding = 2
