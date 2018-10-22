@@ -189,7 +189,7 @@ It should only modify the values of Spacemacs settings."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner 999
 
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
@@ -508,6 +508,9 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (setq ediff-diff-program "~/.local/bin/diff-en")
+  ; js indentation
+  (advice-add 'js--multi-line-declaration-indentation :around (lambda (orig-fun &rest args) nil))
   (add-hook 'after-init-hook #'global-emojify-mode)
   (add-hook 'js2-mode-hook
             (lambda ()
