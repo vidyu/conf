@@ -91,6 +91,7 @@ This function should only modify configuration layer settings."
                                       geben
                                       import-js
                                       doom-themes
+                                      lab-themes
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -214,7 +215,10 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         (flucui-dark :location (recipe :fetcher github :repo "MetroWind/flucui-theme"))
+                         doom-one
                          doom-one-light
+                         (flucui-light :location (recipe :fetcher github :repo "MetroWind/flucui-theme"))
                          spacemacs-dark
                          doom-one-light
                          doom-one
