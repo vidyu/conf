@@ -1,0 +1,24 @@
+{
+  "name": "emacs-dependencies",
+  "version": "0.0.1",
+  "description": "Npm dependencies for emacs",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-eslint": "10",
+    "babel-jscs": "^3.0.0-beta1",
+    "eslint": "5",
+    "eslint-config-xo-react": "0.17",
+    "eslint-config-xo-space": "0.20",
+    "eslint-plugin-babel": "5",
+    "eslint-plugin-react": "7",
+    "js-beautify": "^1.6.11",
+    "jscs": "^3.0.7",
+    "jshint": "^2.9.2",
+    "tern": "0.22"
+  }
+}
