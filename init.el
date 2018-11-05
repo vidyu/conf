@@ -76,6 +76,7 @@ This function should only modify configuration layer settings."
      spacemacs-layouts
      ;; themes-megapack
      colors
+     multiple-cursors
      )
 
    ;; List of additional packages that will be installed without being
@@ -512,6 +513,33 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(n)" "CANCELLED(c)")))
+  (setq org-agenda-custom-commands
+        '(("o" "At the office" tags-todo "@office" ((org-agenda-overriding-header "Office"))))
+        )
+  (setq org-agenda-files
+        (quote
+         ("~/.gtd/inbox.org"
+          "~/.gtd/gtd.org"
+          "~/.gtd/tickler.org")))
+  (setq org-capture-templates
+        (quote
+         (
+          ("t" "Todo [inbox]" entry (file+headline "~/.gtd/inbox.org" "Aufgaben") "* TODO %i%?")
+          ("T" "Tickler" entry (file+headline "~/.gtd/tickler.org" "Tickler") "* %i%? \n %U")
+          ;; ("p" "Pim Task" entry (file "~/Workspace/pim/TODOs.org") "* TODO %?" :clock-in t :clock-keep t)
+          ;; ("m" "Melon Task" entry (file "~/Workspace/melon-webapp/TODOs.org") "* TODO %?" :clock-in t :clock-keep t)
+          ;; ("t" "Task" entry (file "~/org/notes.org") "* TODO %?")
+          )))
+  (setq org-outline-path-complete-in-steps nil)
+  (setq org-refile-targets (quote (
+                                   ("~/.gtd/gtd.org" :maxlevel . 3)
+                                   ("~/.gtd/someday.org" :level . 1)
+                                   ("~/.gtd/tickler.org" :maxlevel . 2)
+                                   (org-agenda-files :maxlevel . 9)
+                                   )))
+  (setq org-refile-use-outline-path (quote buffer-name))
+
   (setq ediff-diff-program "~/.local/bin/diff-en")
   ; js indentation
   (advice-add 'js--multi-line-declaration-indentation :around (lambda (orig-fun &rest args) nil))
@@ -574,7 +602,7 @@ before packages are loaded."
   ;; (spacemacs/toggle-mode-line-minor-modes-off)
   ;; (spacemacs/toggle-mode-line-version-control-off)
   ;; (spacemacs/toggle-mode-line-org-clock-on)
-  (global-evil-mc-mode 1)
+  ;; (global-evil-mc-mode 1)
   ;; Puml conf
   (add-to-list 'auto-mode-alist '("\\.puml\\'" . puml-mode))
   (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . puml-mode))
