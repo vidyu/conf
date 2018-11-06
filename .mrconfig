@@ -4,3 +4,14 @@ checkout = git clone 'git@gitlab.com:dev-vidyu/password-store.git' '.password-st
 
 [.password-store-private]
 checkout = git clone 'git@gitlab.com:dev-vidyu/password-store-private.git' '.password-store-private'
+
+[.spacemacs.d]
+checkout = git clone 'git@github.com:vidyu/conf.git' '.spacemacs.d'
+	          cd .spacemacs.d
+	          git checkout spacemacs.d/master
+	          yarn install
+
+[.emacs.d]
+checkout = git clone 'https://github.com/syl20bnr/spacemacs' '.emacs.d'
+         cd .emacs.d
+         git checkout develop
