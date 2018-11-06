@@ -1,0 +1,6 @@
+
+[.password-store]
+checkout = git clone 'git@gitlab.com:dev-vidyu/password-store.git' '.password-store'
+
+[.password-store-private]
+checkout = git clone 'git@gitlab.com:dev-vidyu/password-store-private.git' '.password-store-private'
