@@ -6,18 +6,20 @@ checkout = git clone 'git@gitlab.com:dev-vidyu/password-store.git' '.password-st
 checkout = git clone 'git@gitlab.com:dev-vidyu/password-store-private.git' '.password-store-private'
 
 [.spacemacs.d]
-checkout = git clone 'git@github.com:vidyu/conf.git' '.spacemacs.d'
+checkout = git clone -b spacemacs.d/master --single-branch 'git@github.com:vidyu/conf.git' '.spacemacs.d'
 	          cd .spacemacs.d
-	          git checkout spacemacs.d/master
 	          yarn install
+update = git pull
 
 [.emacs.d]
-checkout = git clone 'https://github.com/syl20bnr/spacemacs' '.emacs.d'
-         cd .emacs.d
-         git checkout develop
+checkout = git clone -b develop 'https://github.com/syl20bnr/spacemacs' '.emacs.d'
+update = git pull
 
 [.config/vcsh/repo.d/zprezto.git]
 checkout = vcsh clone -b vcsh/zprezto git@github.com:vidyu/conf.git zprezto
-         vcsh zprezto submodule update --init --recursive
+	        vcsh zprezto submodule update --init --recursive
 update = vcsh zprezto pull --recurse-submodules
 
+
+[.config/vcsh/repo.d/tmux.git]
+checkout = vcsh clone -b vcsh/tmux 'git@github.com:vidyu/conf.git' 'tmux'
