@@ -19,4 +19,5 @@ checkout = git clone 'https://github.com/syl20bnr/spacemacs' '.emacs.d'
 [.config/vcsh/repo.d/zprezto.git]
 checkout = vcsh clone -b vcsh/zprezto git@github.com:vidyu/conf.git zprezto
          vcsh zprezto submodule update --init --recursive
+update = vcsh zprezto pull --recurse-submodules
 
