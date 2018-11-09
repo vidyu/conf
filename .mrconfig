@@ -9,7 +9,7 @@ checkout = git clone 'git@gitlab.com:dev-vidyu/password-store-private.git' '.pas
 checkout = git clone -b spacemacs.d/master --single-branch 'git@github.com:vidyu/conf.git' '.spacemacs.d'
 	          cd .spacemacs.d
 	          yarn install
-                  touch custom.el
+	                 touch custom.el
 update = git pull
 
 [.emacs.d]
@@ -24,3 +24,6 @@ update = vcsh zprezto pull --recurse-submodules
 
 [.config/vcsh/repo.d/tmux.git]
 checkout = vcsh clone -b vcsh/tmux 'git@github.com:vidyu/conf.git' 'tmux'
+
+[.gtd]
+checkout = git clone 'git@gitlab.com:dev-vidyu/gtd.git' '.gtd'
