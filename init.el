@@ -576,10 +576,21 @@ before packages are loaded."
   (doom-themes-neotree-config)
   (doom-themes-org-config)
   (doom-themes-visual-bell-config)
-  (defun my/org-mode-hook ()
-    (set-face-attribute 'org-level-1 nil :height 1.0)
-    (doom-themes-org-config))
-  (add-hook 'org-load-hook #'my/org-mode-hook)
+  (with-eval-after-load 'org
+    (defun my/org-mode-hook ()
+      (set-face-attribute 'org-level-1 nil :height 1.0)
+      (doom-themes-org-config))
+    (add-hook 'org-load-hook #'my/org-mode-hook)
+    ;; crypt
+    (require 'org-crypt)
+    (org-crypt-use-before-save-magic)
+    (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+    (setq org-crypt-disable-auto-save (quote encrypt))
+    ;; GPG key to use for encryption
+    ;; Either the Key ID or set to nil to use symmetric encryption.
+    (setq org-crypt-key "B63C48A78B4C4A6C")
+    (setq org-modules (quote (org-crypt)))
+    )
   (use-package csv-mode
     :init
     (setq csv-separators '(";" "," " ")))
