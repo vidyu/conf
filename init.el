@@ -469,7 +469,11 @@ This function defines the environment variables for your Emacs session. By
 default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
-  (spacemacs/load-spacemacs-env))
+  (spacemacs/load-spacemacs-env)
+  (setenv "PATH" (concat (getenv "PATH") ":" dotspacemacs-directory "node_modules/.bin/"))
+  (add-to-list 'exec-path (concat dotspacemacs-directory "node_modules/.bin/"))
+  (setenv "SSH_AUTH_SOCK" "/run/user/1000/gnupg/S.gpg-agent.ssh")
+  )
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
@@ -491,8 +495,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
    ;; js-expr-indent-offset -2
    js-switch-indent-offset 2
    js2-basic-offset 2)
-  (setenv "PATH" (concat (getenv "PATH") ":" dotspacemacs-directory "node_modules/.bin/"))
-  (add-to-list 'exec-path (concat dotspacemacs-directory "node_modules/.bin/"))
   ;; (setenv "PATH" (concat (getenv "PATH") ":" dotspacemacs-directory "~/.composer/vendor/bin/"))
   ;; (add-to-list 'exec-path (concat dotspacemacs-directory "~/.composer/vendor/bin/"))
   ;; Prevent Custom from dumping its local settings into this file.
