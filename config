@@ -62,8 +62,8 @@ bindsym $mod+Return exec terminator
 bindsym $mod+Shift+q kill
 
 # Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 20; notify-send 'brightness up'"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 20; notify-send 'brightness down'"
 
 # Start Applications
 # bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
@@ -274,7 +274,7 @@ mode "resize" {
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
+       # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
@@ -306,10 +306,9 @@ bindsym $mod+m bar mode toggle 2
 bindsym $mod+Shift+m bar mode toggle
 
 bar {
-        output VGA1
+        output HDMI1
+        tray_output HDMI1
         position top
-        id 1
-        tray_output VGA1
         strip_workspace_numbers yes
         # i3bar_command i3bar
         status_command bumblebee-status -m title
@@ -327,12 +326,12 @@ bar {
         }
 }
 bar {
-      output VGA1
+      output HDMI1
       id 2
       position bottom
       tray_output no
       workspace_buttons no
-      status_command bumblebee-status -m nic cpu pasource pasink datetime -p interval=2.5 datetime.format="%a, %b %x %X" -t gruvbox-powerline
+      status_command bumblebee-status -m nic cpu pasource pasink datetime -p interval=2.5 datetime.format="%a, %b %x %X" nic.states="^down" -t gruvbox-powerline
       tray_output none
       colors {
                 # Whole color settings
@@ -346,12 +345,11 @@ bar {
       }
 }
 bar {
-        output HDMI1
-        position top
-        id 3
+        output LVDS1
         tray_output none
-        strip_workspace_numbers yes
+        position top
         i3bar_command i3bar
+        strip_workspace_numbers yes
         colors {
                 # Whole color settings
                 background #f9f9f9
