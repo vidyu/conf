@@ -33,8 +33,12 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(react
+   '(typescript
+     (node :variables
+           node-add-modules-path t)
+     react
      haskell
+     unicode-fonts
      sql
      nginx
      yaml
