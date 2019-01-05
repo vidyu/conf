@@ -525,6 +525,13 @@ before packages are loaded."
   (setq org-agenda-custom-commands
         '(("o" "At the office" tags-todo "@office" ((org-agenda-overriding-header "Office"))))
         )
+  (setq org-agenda-custom-commands
+        '(("p" "Private" alltodo ""
+           ((org-agenda-files
+             '("~/.gtd/inbox.org.gpg"
+               "~/.gtd/gtd.org.gpg"
+               "~/.gtd/tickler.org.gpg"))))))
+
   (setq org-agenda-files
         (quote
          ("~/.gtd/inbox.org"
@@ -535,6 +542,8 @@ before packages are loaded."
          (
           ("t" "Todo [inbox]" entry (file+headline "~/.gtd/inbox.org" "Aufgaben") "* TODO %i%?")
           ("T" "Tickler" entry (file+headline "~/.gtd/tickler.org" "Tickler") "* %i%? \n %U")
+          ("p" "Private Todo [inbox]" entry (file+headline "~/.gtd/inbox.org.gpg" "Aufgaben") "* TODO %i%?")
+          ("P" "Private Tickler" entry (file+headline "~/.gtd/tickler.org.gpg" "Tickler") "* %i%? \n %U")
           ;; ("p" "Pim Task" entry (file "~/Workspace/pim/TODOs.org") "* TODO %?" :clock-in t :clock-keep t)
           ;; ("m" "Melon Task" entry (file "~/Workspace/melon-webapp/TODOs.org") "* TODO %?" :clock-in t :clock-keep t)
           ;; ("t" "Task" entry (file "~/org/notes.org") "* TODO %?")
