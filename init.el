@@ -521,17 +521,14 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (evil-define-key 'normal prog-mode-map
     (kbd "zn") 'hs-hide-level)
-  (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(n)" "CANCELLED(c)")))
+  (setq org-todo-keywords '((sequence "TODO(t)" "IN PROGRESS(p)" "WAITING(w)" "|" "DONE(n)" "CANCELLED(c)")))
   (setq org-agenda-custom-commands
-        '(("o" "At the office" tags-todo "@office" ((org-agenda-overriding-header "Office"))))
-        )
-  (setq org-agenda-custom-commands
-        '(("p" "Private" alltodo ""
+        '(("o" "At the office" tags-todo "@office" ((org-agenda-overriding-header "Office")))
+          ("p" "Private" alltodo ""
            ((org-agenda-files
              '("~/.gtd/inbox.org.gpg"
                "~/.gtd/gtd.org.gpg"
                "~/.gtd/tickler.org.gpg"))))))
-
   (setq org-agenda-files
         (quote
          ("~/.gtd/inbox.org"
