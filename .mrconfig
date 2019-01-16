@@ -8,6 +8,7 @@ checkout = git clone 'git@gitlab.com:dev-vidyu/password-store-private.git' '.pas
 [.spacemacs.d]
 checkout = git clone -b spacemacs.d/master --single-branch 'git@github.com:vidyu/conf.git' '.spacemacs.d'
            cd .spacemacs.d
+           git submodule update --init --recursive
            yarn --silent install
            touch custom.el
 update = git pull
