@@ -1,0 +1,3 @@
+[submodule "layers/flow"]
+	path = layers/flow
+	url = https://github.com/stevenremot/spacemacs-layer-flow.git

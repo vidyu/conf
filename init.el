@@ -29,7 +29,7 @@ This function should only modify configuration layer settings."
    ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+   dotspacemacs-configuration-layer-path '("~/.spacemacs.d/layers/")
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
@@ -76,6 +76,7 @@ This function should only modify configuration layer settings."
      (spell-checking :variables
                      spell-checking-enable-by-default nil)
      syntax-checking
+     flow
      version-control
      spacemacs-layouts
      ;; themes-megapack
