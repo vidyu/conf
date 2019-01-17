@@ -11,7 +11,7 @@ checkout = git clone -b spacemacs.d/master --single-branch 'git@github.com:vidyu
            git submodule update --init --recursive
            yarn --silent install
            touch custom.el
-update = git pull
+update = git pull --recurse-submodules
 
 [.emacs.d]
 checkout = git clone -b develop 'https://github.com/syl20bnr/spacemacs' '.emacs.d'
