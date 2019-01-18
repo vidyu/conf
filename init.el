@@ -196,7 +196,7 @@ It should only modify the values of Spacemacs settings."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 999
+   dotspacemacs-startup-banner 004
 
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
@@ -551,6 +551,7 @@ before packages are loaded."
                                    ("~/.gtd/gtd.org" :maxlevel . 3)
                                    ("~/.gtd/someday.org" :level . 1)
                                    ("~/.gtd/tickler.org" :maxlevel . 2)
+                                   ("~/.gtd/bookmarks.org" :maxlevel . 2)
                                    (org-agenda-files :maxlevel . 9)
                                    )))
   (setq org-refile-use-outline-path (quote buffer-name))
