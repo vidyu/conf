@@ -551,7 +551,7 @@ before packages are loaded."
                                    ("~/.gtd/gtd.org" :maxlevel . 3)
                                    ("~/.gtd/someday.org" :level . 1)
                                    ("~/.gtd/tickler.org" :maxlevel . 2)
-                                   ("~/.gtd/bookmarks.org" :maxlevel . 2)
+                                   ("~/.gtd/notes.org" :maxlevel . 2)
                                    (org-agenda-files :maxlevel . 9)
                                    )))
   (setq org-refile-use-outline-path (quote buffer-name))
