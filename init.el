@@ -494,6 +494,9 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
     "Base path for customised Emacs configuration.")
   (setq-default
    shell-file-name "/bin/sh"
+   doom-modeline-height 20
+   doom-modeline-persp-name nil
+   doom-modeline-buffer-file-name-style 'buffer-name
    flycheck-disabled-checkers (quote (javascript-jscs javascript-jshint))
    browse-url-browser-function (quote browse-url-chromium)
    js-indent-level 2
@@ -608,7 +611,6 @@ before packages are loaded."
   (use-package csv-mode
     :init
     (setq csv-separators '(";" "," " ")))
-  (setq doom-modeline-height 20)
   ;; (use-package spaceline-all-the-icons
   ;;   :after spaceline
   ;;   :config (spaceline-all-the-icons-theme))
