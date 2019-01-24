@@ -1,0 +1,1 @@
+/home/vidyu/.local/bin/rofi-gopass/rofi-gopass.js
