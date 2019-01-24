@@ -32,3 +32,6 @@ checkout = git clone 'git@gitlab.com:dev-vidyu/gtd.git' '.gtd'
 
 [.config/vcsh/repo.d/compton.git]
 checkout = vcsh clone -b vcsh/compton git@github.com:vidyu/conf.git compton
+
+[.config/vcsh/repo.d/bin.git]
+checkout = vcsh clone -b vcsh/bin 'git@github.com:vidyu/conf.git' 'bin'
