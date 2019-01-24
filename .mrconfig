@@ -7,11 +7,12 @@ checkout = git clone 'git@gitlab.com:dev-vidyu/password-store-private.git' '.pas
 
 [.spacemacs.d]
 checkout = git clone -b spacemacs.d/master --single-branch 'git@github.com:vidyu/conf.git' '.spacemacs.d'
-           cd .spacemacs.d
-           git submodule update --init --recursive
-           yarn --silent install
-           touch custom.el
-update = git pull --recurse-submodules
+	          cd .spacemacs.d
+	          git submodule update --init --recursive
+	          yarn --silent install
+	          touch custom.el
+update = git pull --recurse-submodules --rebase --autostash
+	        yarn --silent
 
 [.emacs.d]
 checkout = git clone -b develop 'https://github.com/syl20bnr/spacemacs' '.emacs.d'
@@ -19,8 +20,8 @@ update = git pull
 
 [.config/vcsh/repo.d/zprezto.git]
 checkout = vcsh clone -b vcsh/zprezto git@github.com:vidyu/conf.git zprezto
-           vcsh zprezto submodule update --init --recursive
-update = vcsh zprezto pull --recurse-submodules
+	          vcsh zprezto submodule update --init --recursive
+update = vcsh zprezto pull --recurse-submodules --rebase --autostash
 
 
 [.config/vcsh/repo.d/tmux.git]
@@ -28,3 +29,6 @@ checkout = vcsh clone -b vcsh/tmux 'git@github.com:vidyu/conf.git' 'tmux'
 
 [.gtd]
 checkout = git clone 'git@gitlab.com:dev-vidyu/gtd.git' '.gtd'
+
+[.config/vcsh/repo.d/compton.git]
+checkout = vcsh clone -b vcsh/compton git@github.com:vidyu/conf.git compton
