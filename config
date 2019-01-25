@@ -174,16 +174,16 @@ set $w9 "9:"
 set $w10 "10:"
 
 # set workspaces screens
-workspace $w1 output HDMI1
-workspace $w2 output HDMI1
-workspace $w3 output HDMI1
-workspace $w4 output HDMI1
-workspace $w5 output HDMI1
-workspace $w6 output VGA1
-workspace $w7 output VGA1
-workspace $w8 output VGA1
-workspace $w9 output VGA1
-workspace $w10 output VGA1
+workspace $w1 output DisplayPort-0
+workspace $w2 output DisplayPort-0
+workspace $w3 output DisplayPort-0
+workspace $w4 output DisplayPort-0
+workspace $w5 output DisplayPort-0
+workspace $w6 output DVI-0
+workspace $w7 output DVI-0
+workspace $w8 output DVI-0
+workspace $w9 output DVI-0
+workspace $w10 output DVI-0
 
 # switch to workspace
 bindsym $mod+1 workspace $w1
@@ -310,37 +310,41 @@ exec xscreensaver &
 bindsym $mod+m bar mode toggle 2
 bindsym $mod+Shift+m bar mode toggle
 
+# exec_always --no-startup-id .config/polybar/launch.sh
+exec_always --no-startup-id xfce4-panel --disable-wm-check
+# bar {
+#         output VGA1
+#         position top
+#         id 1
+#         tray_output VGA1
+#         tray_padding 0
+#         strip_workspace_numbers yes
+#         # i3bar_command i3bar
+#         status_command bumblebee-status -m title
+#         # status_command i3blocks
+#         # status_command py3status
+#         colors {
+#                 # Whole color settings
+#                 background #f9f9f9
+#                 # <colorclass>     <border> <background> <text>
+#                 focused_workspace  #c8c8c8  #f9f9f9      #111111
+#                 active_workspace   #c8c8c8  #c8c8c8      #111111
+#                 inactive_workspace #f9f9f9  #f9f9f9      #111111
+#                 urgent_workspace   #b38f00  #b38f00      #111111
+#                 binding_mode       #f9f9f9  #f9f9f9      #111111
+#         }
+# }
 bar {
-        output HDMI1
-        tray_output HDMI1
-        position top
-        strip_workspace_numbers yes
-        # i3bar_command i3bar
-        status_command bumblebee-status -m title
-        # status_command i3blocks
-        # status_command py3status
-        colors {
-                # Whole color settings
-                background #f9f9f9
-                # <colorclass>     <border> <background> <text>
-                focused_workspace  #c8c8c8  #f9f9f9      #111111
-                active_workspace   #c8c8c8  #c8c8c8      #111111
-                inactive_workspace #f9f9f9  #f9f9f9      #111111
-                urgent_workspace   #b38f00  #b38f00      #111111
-                binding_mode       #f9f9f9  #f9f9f9      #111111
-        }
-}
-bar {
-      output HDMI1
+      output DVI-0
       id 2
+      i3bar_command i3bar -t
       position bottom
-      tray_output no
       workspace_buttons no
-      status_command bumblebee-status -m sensors nic cpu pasource pasink -p interval=2.5 datetime.format="%a, %b %x %X" nic.states="^down" -t gruvbox-powerline
+      status_command bumblebee-status -m nic traffic cpu pasource pasink -p interval=2.5 traffic.states="^down" traffic.exclude="lo,docker,br-" datetime.format="%a, %b %x %X" -t gruvbox-powerline
       tray_output none
       colors {
                 # Whole color settings
-                background #282828
+                background #28282888
                 # <colorclass>     <border>  <background> <text>
                 focused_workspace  #4c789944 #28557744    #ffffff
                 active_workspace   #282828   #282828      #fbf1c7
@@ -350,11 +354,12 @@ bar {
       }
 }
 # bar {
-#         output LVDS1
-#         tray_output none
+#         output HDMI1
 #         position top
-#         i3bar_command i3bar
+#         id 3
+#         tray_output none
 #         strip_workspace_numbers yes
+#         # i3bar_command i3bar
 #         colors {
 #                 # Whole color settings
 #                 background #f9f9f9
