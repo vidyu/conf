@@ -27,6 +27,7 @@ new_window none
 new_float none
 
 for_window [class="Pinentry"] floating enable
+for_window [class="Spotify"] move scratchpad, move left 160, resize grow right 320, scratchpad show
 for_window [window_role="^EMsg"] floating enable
 for_window [class="i3bar"] border pixel 0
 for_window [class=".*"] title_format " %title"
@@ -322,7 +323,6 @@ bar {
       position top
       strip_workspace_numbers yes
       i3bar_command i3bar -t
-      status_command bumblebee-status -m datetime -p datetime.theme.bg="#00000000"
       # status_command i3blocks
       # status_command py3status
       colors {
