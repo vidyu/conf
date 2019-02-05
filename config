@@ -27,6 +27,8 @@ new_window none
 new_float none
 
 for_window [class="Pinentry"] floating enable
+for_window [window_role="^EMsg"] floating enable
+for_window [class="i3bar"] border pixel 0
 for_window [class=".*"] title_format " %title"
 # use window title, but no border
 bindsym $mod+t border normal 3
@@ -122,7 +124,7 @@ bindsym $mod+Shift+Right move right
 # bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
-bindsym $mod+z split h;exec notify-send 'tile horizontally'
+bindsym $mod+c split h;exec notify-send 'tile horizontally'
 bindsym $mod+v split v;exec notify-send 'tile vertically'
 bindsym $mod+q split toggle
 
@@ -214,8 +216,10 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # lock the screen
 bindsym $mod+Control+l exec xscreensaver-command --lock
+# bindsym $mod+Control+l exec mate-screensaver-command --lock
 # bindsym XF86Sleep exec /opt/lock/lock
 bindsym XF86Sleep exec xscreensaver-command --lock
+# bindsym XF86Sleep exec mate-screensaver-command --lock
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
@@ -296,13 +300,17 @@ exec compton -b
 exec nitrogen --restore
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-exec_always --no-startup-id  ~/.config/polybar/launch.sh
+# exec --no-startup-id sleep 3 && xfce4-power-manager
+# exec_always --no-startup-id xfce4-panel --disable-wm-check
+# exec_always --no-startup-id  ~/.config/polybar/launch.sh
 # exec --no-startup-id pasystray
+exec --no-startup-id nm-applet
 # exec pasystray &
 exec dunst &
 exec sleep 2s && xxkb &
 exec xbanish &
 exec xscreensaver &
+# exec mate-screensaver &
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -310,41 +318,40 @@ exec xscreensaver &
 bindsym $mod+m bar mode toggle 2
 bindsym $mod+Shift+m bar mode toggle
 
-# exec_always --no-startup-id .config/polybar/launch.sh
-exec_always --no-startup-id xfce4-panel --disable-wm-check
-# bar {
-#         output VGA1
-#         position top
-#         id 1
-#         tray_output VGA1
-#         tray_padding 0
-#         strip_workspace_numbers yes
-#         # i3bar_command i3bar
-#         status_command bumblebee-status -m title
-#         # status_command i3blocks
-#         # status_command py3status
-#         colors {
-#                 # Whole color settings
-#                 background #f9f9f9
-#                 # <colorclass>     <border> <background> <text>
-#                 focused_workspace  #c8c8c8  #f9f9f9      #111111
-#                 active_workspace   #c8c8c8  #c8c8c8      #111111
-#                 inactive_workspace #f9f9f9  #f9f9f9      #111111
-#                 urgent_workspace   #b38f00  #b38f00      #111111
-#                 binding_mode       #f9f9f9  #f9f9f9      #111111
-#         }
-# }
+bar {
+      output DVI-0
+      tray_output DVI-0
+      position top
+      strip_workspace_numbers yes
+      i3bar_command i3bar -t
+      # status_command bumblebee-status -m datetime -p datetime.theme.bg="#00000000"
+      # status_command i3blocks
+      # status_command py3status
+      colors {
+                # Whole color settings
+                background #28282800
+                # <colorclass>     <border>  <background> <text>
+                focused_workspace  #4c789944 #28557744    #ffffff
+                active_workspace   #28282844 #28282844    #fbf1c7
+                inactive_workspace #f9f9f922 #FFFFFF22    #888888
+                urgent_workspace   #2f343a44 #90000044    #ffffff
+                binding_mode       #2f343a44 #90000044    #ffffff
+      }
+}
+
 bar {
       output DVI-0
       id 2
       i3bar_command i3bar -t
       position bottom
+      tray_output no
+      i3bar_command i3bar -t
       workspace_buttons no
-      status_command bumblebee-status -m nic traffic cpu pasource pasink -p interval=2.5 traffic.states="^down" traffic.exclude="lo,docker,br-" datetime.format="%a, %b %x %X" -t gruvbox-powerline
+      status_command bumblebee-status -m sensors nic traffic cpu pasource pasink -t iceberg -p interval=2.5 datetime.format="%a, %b %x %X" nic.states="^down" traffic.states="^down" traffic.exclude="lo,docker,br-" sensors.theme.bg="#28282800" nic.theme.bg="#28282800" traffic.theme.bg="#28282800" cpu.theme.bg="#28282800" pasource.theme.bg="#28282800" pasink.theme.bg="#28282800"
       tray_output none
       colors {
                 # Whole color settings
-                background #28282888
+                background #28282800
                 # <colorclass>     <border>  <background> <text>
                 focused_workspace  #4c789944 #28557744    #ffffff
                 active_workspace   #282828   #282828      #fbf1c7
@@ -353,24 +360,23 @@ bar {
                 binding_mode       #2f343a44 #90000044    #ffffff
       }
 }
-# bar {
-#         output HDMI1
-#         position top
-#         id 3
-#         tray_output none
-#         strip_workspace_numbers yes
-#         # i3bar_command i3bar
-#         colors {
-#                 # Whole color settings
-#                 background #f9f9f9
-#                 # <colorclass>     <border> <background> <text>
-#                 focused_workspace  #c8c8c8  #f9f9f9      #111111
-#                 active_workspace   #c8c8c8  #c8c8c8      #111111
-#                 inactive_workspace #f9f9f9  #f9f9f9      #111111
-#                 urgent_workspace   #b38f00  #b38f00      #111111
-#                 binding_mode       #f9f9f9  #f9f9f9      #111111
-#         }
-# }
+bar {
+      output DisplayPort-0
+      tray_output none
+      position top
+      i3bar_command i3bar -t
+      strip_workspace_numbers yes
+      colors {
+                # Whole color settings
+                background #28282800
+                # <colorclass>     <border>  <background> <text>
+                focused_workspace  #4c789944 #28557744    #ffffff
+                active_workspace   #28282844 #28282844    #fbf1c7
+                inactive_workspace #f9f9f922 #FFFFFF22    #888888
+                urgent_workspace   #2f343a44 #90000044    #ffffff
+                binding_mode       #2f343a44 #90000044    #ffffff
+      }
+}
 
 # smart_gaps on
 gaps inner 10
